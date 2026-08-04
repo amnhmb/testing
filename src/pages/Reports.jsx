@@ -180,7 +180,7 @@ export default function Reports() {
             <RefreshCw size={16} />
           </button>
           <button onClick={() => window.print()} className="btn btn-primary" style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-            <Printer size={16} /> Cetak Laporan
+            <Printer size={16} /> {tr('printReport')}
           </button>
         </div>
       </div>

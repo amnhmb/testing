@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { updateInvoicePayment } from '../services/storage';
-import { X, CheckCircle2, AlertCircle } from 'lucide-react';
+import { X, Save } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function PaymentModal({ invoice, onClose, onSaveSuccess }) {
+  const { tr } = useLanguage();
   const [deposit, setDeposit] = useState(invoice.deposit || 0);
   const [status, setStatus] = useState(invoice.status || 'Unpaid');
   const [loading, setLoading] = useState(false);
@@ -148,10 +150,10 @@ export default function PaymentModal({ invoice, onClose, onSaveSuccess }) {
 
           <div className="modal-footer">
             <button type="button" onClick={onClose} className="btn btn-secondary">
-              Batal
+              {tr('cancel')}
             </button>
             <button type="submit" className="btn btn-primary" disabled={loading}>
-              <CheckCircle2 size={16} /> {loading ? 'Menyimpan...' : 'Update'}
+              <Save size={16} /> {loading ? 'Menyimpan...' : tr('save')}
             </button>
           </div>
         </form>

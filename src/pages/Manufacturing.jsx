@@ -5,7 +5,7 @@ import KilangVoucherModal from '../components/KilangVoucherModal';
 import { useLanguage } from '../context/LanguageContext';
 
 export default function Manufacturing() {
-  const { tr } = useLanguage();
+  const { tr, language } = useLanguage();
   const [invoices, setInvoices] = useState([]);
   const [settings, setSettings] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
@@ -28,18 +28,18 @@ export default function Manufacturing() {
   const lastTapRef = useRef(0);
 
   const monthsList = [
-    { value: '0', label: 'Januari' },
-    { value: '1', label: 'Februari' },
-    { value: '2', label: 'Mac' },
-    { value: '3', label: 'April' },
-    { value: '4', label: 'Mei' },
-    { value: '5', label: 'Jun' },
-    { value: '6', label: 'Julai' },
-    { value: '7', label: 'Ogos' },
-    { value: '8', label: 'September' },
-    { value: '9', label: 'Oktober' },
-    { value: '10', label: 'November' },
-    { value: '11', label: 'Disember' }
+    { value: '0', label: language === 'EN' ? 'January' : 'Januari' },
+    { value: '1', label: language === 'EN' ? 'February' : 'Februari' },
+    { value: '2', label: language === 'EN' ? 'March' : 'Mac' },
+    { value: '3', label: language === 'EN' ? 'April' : 'April' },
+    { value: '4', label: language === 'EN' ? 'May' : 'Mei' },
+    { value: '5', label: language === 'EN' ? 'June' : 'Jun' },
+    { value: '6', label: language === 'EN' ? 'July' : 'Julai' },
+    { value: '7', label: language === 'EN' ? 'August' : 'Ogos' },
+    { value: '8', label: language === 'EN' ? 'September' : 'September' },
+    { value: '9', label: language === 'EN' ? 'October' : 'Oktober' },
+    { value: '10', label: language === 'EN' ? 'November' : 'November' },
+    { value: '11', label: language === 'EN' ? 'December' : 'Disember' }
   ];
 
   useEffect(() => {
@@ -243,7 +243,7 @@ export default function Manufacturing() {
           <Search size={18} className="search-icon" />
           <input
             type="text"
-            placeholder="Cari nama pelanggan atau no. invoice..."
+            placeholder={tr('searchPlaceholder')}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="form-control search-input"
@@ -252,13 +252,13 @@ export default function Manufacturing() {
 
         <div className="filter-group-row">
           <div className="filter-box">
-            <span className="select-label">Bulan</span>
+            <span className="select-label">{tr('month')}</span>
             <select
               value={monthFilter}
               onChange={(e) => setMonthFilter(e.target.value)}
               className="form-control filter-select"
             >
-              <option value="All">Semua Bulan</option>
+              <option value="All">{tr('allMonths')}</option>
               {monthsList.map(m => (
                 <option key={m.value} value={m.value}>{m.label}</option>
               ))}
@@ -282,20 +282,20 @@ export default function Manufacturing() {
         </div>
 
         {loading && invoices.length === 0 ? (
-          <div className="loading-state" style={{ padding: '3rem', textAlign: 'center', color: 'var(--text-muted)' }}>Memuatkan data...</div>
+          <div className="loading-state" style={{ padding: '3rem', textAlign: 'center', color: 'var(--text-muted)' }}>{tr('loadingData')}</div>
         ) : filteredInvoices.length === 0 ? (
-          <div className="empty-state" style={{ padding: '3rem', textAlign: 'center', color: 'var(--text-muted)' }}>Tiada rekod pengeluaran ditemui.</div>
+          <div className="empty-state" style={{ padding: '3rem', textAlign: 'center', color: 'var(--text-muted)' }}>{tr('noData')}</div>
         ) : (
           <>
             <div className="table-container desktop-only">
               <table className="table">
                 <thead>
                   <tr>
-                    <th style={{ textAlign: 'left' }}>No. Inv & Nama</th>
-                    <th style={{ textAlign: 'left' }}>Item (Baju/Banner)</th>
-                    <th style={{ textAlign: 'center', width: '160px' }}>Kos Kilang</th>
-                    <th style={{ textAlign: 'center', width: '160px' }}>Status</th>
-                    <th style={{ textAlign: 'center', width: '180px' }}>Tindakan</th>
+                    <th style={{ textAlign: 'left' }}>{tr('invNo')} & {tr('clientName')}</th>
+                    <th style={{ textAlign: 'left' }}>{tr('items')}</th>
+                    <th style={{ textAlign: 'center', width: '160px' }}>{tr('kosKilang')}</th>
+                    <th style={{ textAlign: 'center', width: '160px' }}>{tr('status')}</th>
+                    <th style={{ textAlign: 'center', width: '180px' }}>{tr('actions')}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -353,14 +353,14 @@ export default function Manufacturing() {
                               className="btn btn-primary btn-sm font-bold"
                               style={{ fontSize: '0.75rem', padding: '0.25rem 0.5rem', display: 'flex', alignItems: 'center', gap: '0.25rem' }}
                             >
-                              <Save size={12} /> SAVE
+                              <Save size={12} /> {tr('save')}
                             </button>
                             <button 
                               onClick={() => { setSelectedVoucherInvoice(inv); setIsVoucherModalOpen(true); }}
                               className="btn btn-secondary btn-sm font-bold"
                               style={{ fontSize: '0.75rem', padding: '0.25rem 0.5rem', display: 'flex', alignItems: 'center', gap: '0.25rem' }}
                             >
-                              <Printer size={12} /> PRINT
+                              <Printer size={12} /> {tr('print')}
                             </button>
                           </div>
                         </td>
@@ -428,14 +428,14 @@ export default function Manufacturing() {
                           className="btn btn-primary btn-sm font-bold"
                           style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '0.25rem' }}
                         >
-                          <Save size={12} /> SAVE
+                          <Save size={12} /> {tr('save')}
                         </button>
                         <button 
                           onClick={() => { setSelectedVoucherInvoice(inv); setIsVoucherModalOpen(true); }}
                           className="btn btn-secondary btn-sm font-bold"
                           style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '0.25rem' }}
                         >
-                          <Printer size={12} /> PRINT
+                          <Printer size={12} /> {tr('print')}
                         </button>
                       </div>
                     </div>

@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
-import { X, Plus } from 'lucide-react';
+import { X, Save } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function AddTransactionModal({ isOpen, onClose, onSave }) {
+  const { tr } = useLanguage();
   const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
   const [description, setDescription] = useState('');
   const [type, setType] = useState('OUT');
   const [category, setCategory] = useState('Belanja Operasi');
   const [payee, setPayee] = useState('');
   const [amount, setAmount] = useState('');
+  const [loading, setLoading] = useState(false);
 
   if (!isOpen) return null;
 
@@ -18,6 +21,7 @@ export default function AddTransactionModal({ isOpen, onClose, onSave }) {
       return;
     }
 
+    setLoading(true);
     onSave({
       date,
       description,
@@ -30,6 +34,7 @@ export default function AddTransactionModal({ isOpen, onClose, onSave }) {
     setDescription('');
     setPayee('');
     setAmount('');
+    setLoading(false);
   };
 
   const handleTypeChange = (newType) => {
@@ -128,10 +133,10 @@ export default function AddTransactionModal({ isOpen, onClose, onSave }) {
 
           <div className="modal-footer">
             <button type="button" onClick={onClose} className="btn btn-secondary">
-              Batal
+              {tr('cancel')}
             </button>
-            <button type="button" onClick={handleSubmit} className="btn btn-primary" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <Plus size={16} /> Tambah Rekod
+            <button type="submit" className="btn btn-primary" disabled={loading}>
+              <Save size={16} /> {loading ? 'Menyimpan...' : tr('saveRecord')}
             </button>
           </div>
         </form>

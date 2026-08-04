@@ -338,22 +338,22 @@ export default function Dashboard({ setActiveTab, onOpenInvoiceModal, onOpenPaym
         </div>
 
         {loading && invoices.length === 0 ? (
-          <div className="loading-state" style={{ padding: '2rem', textAlign: 'center' }}>Memuatkan invoice terkini...</div>
+          <div className="loading-state" style={{ padding: '2rem', textAlign: 'center' }}>{tr('loadingInvoice')}</div>
         ) : recentInvoices.length === 0 ? (
-          <div className="empty-state" style={{ padding: '2rem', textAlign: 'center' }}>Tiada invoice terkini ditemui.</div>
+          <div className="empty-state" style={{ padding: '2rem', textAlign: 'center' }}>{tr('noInvoice')}</div>
         ) : (
           <>
             <div className="table-container desktop-only">
               <table className="table">
                 <thead>
                   <tr>
-                    <th style={{ textAlign: 'center' }}>No. Invoice</th>
-                    <th style={{ textAlign: 'left' }}>Nama Pelanggan</th>
-                    <th style={{ textAlign: 'center' }}>Tarikh</th>
-                    <th style={{ textAlign: 'right', paddingRight: '1.5rem' }}>Jumlah (RM)</th>
-                    <th style={{ textAlign: 'center' }}>Status Bayaran</th>
-                    <th style={{ textAlign: 'center' }}>Status Operasi</th>
-                    <th style={{ textAlign: 'center' }}>Tindakan</th>
+                    <th style={{ textAlign: 'center' }}>{tr('invNo')}</th>
+                    <th style={{ textAlign: 'left' }}>{tr('clientName')}</th>
+                    <th style={{ textAlign: 'center' }}>{tr('date')}</th>
+                    <th style={{ textAlign: 'right', paddingRight: '1.5rem' }}>{tr('amount')}</th>
+                    <th style={{ textAlign: 'center' }}>{tr('statusBayaran')}</th>
+                    <th style={{ textAlign: 'center' }}>{tr('statusOperasi')}</th>
+                    <th style={{ textAlign: 'center' }}>{tr('actions')}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -381,7 +381,7 @@ export default function Dashboard({ setActiveTab, onOpenInvoiceModal, onOpenPaym
                           className="btn btn-secondary btn-sm"
                           style={{ display: 'inline-flex', alignItems: 'center', gap: '0.25rem' }}
                         >
-                          <Eye size={12} /> View
+                          <Eye size={12} /> {tr('view')}
                         </button>
                       </td>
                     </tr>
@@ -406,7 +406,7 @@ export default function Dashboard({ setActiveTab, onOpenInvoiceModal, onOpenPaym
                     </span>
                   </div>
                   <div className="mobile-card-row" style={{ marginTop: '0.25rem', fontSize: '0.75rem', color: 'var(--text-muted)' }}>
-                    <span>Operasi: {inv.order_status || 'PENDING'}</span>
+                    <span>{tr('statusOperasi')}: {inv.order_status || 'PENDING'}</span>
                     <span>{new Date(inv.date).toLocaleDateString('en-GB')}</span>
                   </div>
                 </div>

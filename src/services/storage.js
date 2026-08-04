@@ -42,14 +42,14 @@ export const isCloudMode = () => {
 // Default Settings
 const DEFAULT_SETTINGS = {
   company_name: 'THIRTYONE LAB',
-  company_address: 'No 1, Jalan Sublimation, 43000 Kajang, Selangor',
-  company_phone: '012-3456789',
-  company_logo: '', // Base64
+  company_address: '26A, Jalan 1, Jalan Sungai Jelok, Taman Bukit Cantik, 43000 Kajang, Selangor',
+  company_phone: 'Tel: +60 11-2561 4436',
+  company_logo: '/Logo Header.webp', // Loads from public/
   invoice_prefix: 'NO.',
-  bank_name: 'Maybank',
-  bank_account: '112233445566 (THIRTYONE LAB)',
+  bank_name: 'Bank Islam',
+  bank_account: '0502 1020 4490 03 (Hidayatul Rizman bin Rafiuddarajat)',
   qr_code: '', // Base64
-  terms: '1. Deposit 50% diperlukan sebelum cetakan bermula.\n2. Baki bayaran perlu dijelaskan semasa pick-up.\n3. Tiada pemulangan wang selepas design dicetak.'
+  terms: 'The ordered goods will be processed within **two weeks** after we receive a **50% deposit (or half payment).**\nGoods sold are **neither returnable nor refundable.** Otherwise, a **20% cancellation fee** on the total purchase price will be imposed.'
 };
 
 // --- SETTINGS SERVICE ---

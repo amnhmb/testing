@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { updateManufacturingStatus } from '../services/storage';
 import { X, Save } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function ManufacturingModal({ invoice, onClose, onSaveSuccess }) {
+  const { tr } = useLanguage();
   const [orderStatus, setOrderStatus] = useState(invoice.order_status || 'PENDING');
   const [pengeluaran, setPengeluaran] = useState(invoice.pengeluaran || '');
   const [loading, setLoading] = useState(false);
@@ -71,10 +73,10 @@ export default function ManufacturingModal({ invoice, onClose, onSaveSuccess }) 
 
           <div className="modal-footer">
             <button type="button" onClick={onClose} className="btn btn-secondary">
-              Batal
+              {tr('cancel')}
             </button>
-            <button type="submit" disabled={loading} className="btn btn-primary" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <Save size={16} /> {loading ? 'Menyimpan...' : 'Simpan Perubahan'}
+            <button type="submit" className="btn btn-primary" disabled={loading}>
+              <Save size={16} /> {loading ? 'Menyimpan...' : tr('saveChanges')}
             </button>
           </div>
         </form>

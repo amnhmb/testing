@@ -104,7 +104,7 @@ export default function Clients({ onCreateInvoiceForClient }) {
           <Search size={18} className="search-icon" />
           <input
             type="text"
-            placeholder="Cari nama atau nombor telefon pelanggan..."
+            placeholder={tr('searchClientPlaceholder') || "Cari nama atau nombor telefon pelanggan..."}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="form-control search-input"
@@ -115,20 +115,20 @@ export default function Clients({ onCreateInvoiceForClient }) {
       {/* Clients List Table */}
       <div className="card" style={{ padding: 0 }}>
         {loading ? (
-          <div className="loading-state">Memuatkan data pelanggan...</div>
+          <div className="loading-state">{tr('loadingClient')}</div>
         ) : filteredClients.length === 0 ? (
-          <div className="empty-state">Tiada pelanggan ditemui.</div>
+          <div className="empty-state">{tr('noClient')}</div>
         ) : (
           <>
             <div className="table-container desktop-only">
               <table className="table">
                 <thead>
                   <tr>
-                    <th>NAMA PELANGGAN</th>
-                    <th style={{ textAlign: 'center' }}>NO. TELEFON</th>
-                    <th style={{ textAlign: 'center' }}>TOTAL ORDER</th>
-                    <th style={{ textAlign: 'center' }}>TOTAL SPENT</th>
-                    <th style={{ textAlign: 'center' }}>TINDAKAN</th>
+                    <th>{tr('clientName')}</th>
+                    <th style={{ textAlign: 'center' }}>{tr('phone')}</th>
+                    <th style={{ textAlign: 'center' }}>{tr('totalOrder')}</th>
+                    <th style={{ textAlign: 'center' }}>{tr('totalSpent')}</th>
+                    <th style={{ textAlign: 'center' }}>{tr('actions')}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -152,14 +152,14 @@ export default function Clients({ onCreateInvoiceForClient }) {
                             className="btn btn-secondary btn-sm"
                             title="Lihat Sejarah"
                           >
-                            <Eye size={12} /> View
+                            <Eye size={12} /> {tr('view')}
                           </button>
                           <button
                             onClick={() => handleEditClick(client)}
                             className="btn btn-secondary btn-sm"
                             title="Kemaskini Butiran"
                           >
-                            <Edit2 size={12} /> Edit
+                            <Edit2 size={12} /> {tr('edit')}
                           </button>
                           <button
                             onClick={() => handleDeleteClick(client)}
@@ -167,7 +167,7 @@ export default function Clients({ onCreateInvoiceForClient }) {
                             title="Padam Pelanggan"
                             style={{ borderColor: '#FEE2E2', color: '#B91C1C' }}
                           >
-                            <Trash2 size={12} /> Delete
+                            <Trash2 size={12} /> {tr('delete')}
                           </button>
                         </div>
                       </td>
@@ -196,20 +196,20 @@ export default function Clients({ onCreateInvoiceForClient }) {
                       onClick={() => setSelectedClient(client)}
                       className="btn btn-secondary btn-sm"
                     >
-                      <Eye size={12} /> View CRM
+                      <Eye size={12} /> {tr('view')}
                     </button>
                     <button
                       onClick={() => handleEditClick(client)}
                       className="btn btn-secondary btn-sm"
                     >
-                      <Edit2 size={12} /> Edit
+                      <Edit2 size={12} /> {tr('edit')}
                     </button>
                     <button
                       onClick={() => handleDeleteClick(client)}
                       className="btn btn-secondary btn-sm"
                       style={{ borderColor: '#FEE2E2', color: '#B91C1C' }}
                     >
-                      <Trash2 size={12} /> Padam
+                      <Trash2 size={12} /> {tr('delete')}
                     </button>
                   </div>
                 </div>
@@ -237,14 +237,14 @@ export default function Clients({ onCreateInvoiceForClient }) {
                   <div className="info-item">
                     <User size={18} className="text-red" />
                     <div>
-                      <span className="info-label">Nama Pelanggan</span>
+                      <span className="info-label">{tr('clientName')}</span>
                       <span className="info-val">{selectedClient.name}</span>
                     </div>
                   </div>
                   <div className="info-item">
                     <Phone size={18} className="text-red" />
                     <div>
-                      <span className="info-label">Nombor Telefon</span>
+                      <span className="info-label">{tr('phone')}</span>
                       <span className="info-val">{selectedClient.phone}</span>
                     </div>
                   </div>
@@ -547,7 +547,7 @@ export default function Clients({ onCreateInvoiceForClient }) {
 
             <div className="modal-footer">
               <button onClick={() => setSelectedClient(null)} className="btn btn-secondary">
-                Tutup
+                {tr('close')}
               </button>
               <button 
                 onClick={() => { 
@@ -557,7 +557,7 @@ export default function Clients({ onCreateInvoiceForClient }) {
                 }} 
                 className="btn btn-primary"
               >
-                <Edit2 size={14} /> Edit Maklumat
+                <Edit2 size={14} /> {tr('editInfo')}
               </button>
             </div>
           </div>
@@ -578,7 +578,7 @@ export default function Clients({ onCreateInvoiceForClient }) {
             <form onSubmit={handleEditSubmit}>
               <div className="modal-body" style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
                 <div className="form-group">
-                  <label className="form-label">Nama Pelanggan</label>
+                  <label className="form-label">{tr('clientName')}</label>
                   <input
                     type="text"
                     value={editForm.name}
@@ -588,7 +588,7 @@ export default function Clients({ onCreateInvoiceForClient }) {
                   />
                 </div>
                 <div className="form-group">
-                  <label className="form-label">Nombor Telefon</label>
+                  <label className="form-label">{tr('phone')}</label>
                   <input
                     type="text"
                     value={editForm.phone}
@@ -600,11 +600,11 @@ export default function Clients({ onCreateInvoiceForClient }) {
               </div>
               
               <div className="modal-footer">
-                <button type="button" onClick={() => setEditingClient(null)} className="btn btn-secondary">
-                  Batal
+                <button type="button" className="btn btn-secondary" onClick={() => setEditingClient(null)}>
+                  {tr('cancel')}
                 </button>
                 <button type="submit" className="btn btn-primary">
-                  Simpan Perubahan
+                  {tr('saveChanges')}
                 </button>
               </div>
             </form>

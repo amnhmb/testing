@@ -6,7 +6,7 @@ import { useLanguage } from '../context/LanguageContext';
 const ITEMS_PER_PAGE = 10;
 
 export default function Invoices({ onOpenInvoiceModal, onOpenPaymentModal, onOpenInvoiceDetail }) {
-  const { tr } = useLanguage();
+  const { tr, language } = useLanguage();
   const [invoices, setInvoices] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState('All');
@@ -89,19 +89,20 @@ export default function Invoices({ onOpenInvoiceModal, onOpenPaymentModal, onOpe
     }
   };
 
+  
   const monthsList = [
-    { value: '0', label: 'Januari' },
-    { value: '1', label: 'Februari' },
-    { value: '2', label: 'Mac' },
-    { value: '3', label: 'April' },
-    { value: '4', label: 'Mei' },
-    { value: '5', label: 'Jun' },
-    { value: '6', label: 'Julai' },
-    { value: '7', label: 'Ogos' },
-    { value: '8', label: 'September' },
-    { value: '9', label: 'Oktober' },
-    { value: '10', label: 'November' },
-    { value: '11', label: 'Disember' }
+    { value: '0', label: language === 'EN' ? 'January' : 'Januari' },
+    { value: '1', label: language === 'EN' ? 'February' : 'Februari' },
+    { value: '2', label: language === 'EN' ? 'March' : 'Mac' },
+    { value: '3', label: language === 'EN' ? 'April' : 'April' },
+    { value: '4', label: language === 'EN' ? 'May' : 'Mei' },
+    { value: '5', label: language === 'EN' ? 'June' : 'Jun' },
+    { value: '6', label: language === 'EN' ? 'July' : 'Julai' },
+    { value: '7', label: language === 'EN' ? 'August' : 'Ogos' },
+    { value: '8', label: language === 'EN' ? 'September' : 'September' },
+    { value: '9', label: language === 'EN' ? 'October' : 'Oktober' },
+    { value: '10', label: language === 'EN' ? 'November' : 'November' },
+    { value: '11', label: language === 'EN' ? 'December' : 'Disember' }
   ];
 
   return (
@@ -310,7 +311,7 @@ export default function Invoices({ onOpenInvoiceModal, onOpenPaymentModal, onOpe
             disabled={currentPage === 1}
             className="btn btn-secondary btn-sm pag-btn"
           >
-            Sebelum
+            {tr('previous')}
           </button>
           
           <div className="pagination-numbers">
@@ -333,7 +334,7 @@ export default function Invoices({ onOpenInvoiceModal, onOpenPaymentModal, onOpe
             disabled={currentPage === totalPages}
             className="btn btn-secondary btn-sm pag-btn"
           >
-            Seterusnya
+            {tr('next')}
           </button>
         </div>
       )}

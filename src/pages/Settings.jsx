@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { getSettings, saveSettings, isCloudMode } from '../services/storage';
 import { createClient } from '@supabase/supabase-js';
 import { Save, RefreshCw, Upload, CheckCircle2, AlertCircle, Download, FileSpreadsheet } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function Settings() {
+  const { tr } = useLanguage();
   const [settings, setSettings] = useState({
     company_name: '',
     company_address: '',
@@ -226,18 +228,18 @@ export default function Settings() {
   return (
     <div className="main-content">
       <div>
-        <span className="section-tag">Konfigurasi Sistem</span>
-        <h1>Settings & Tetapan</h1>
+        <span className="section-tag">{tr('sysConfig')}</span>
+        <h1>{tr('settingsTitle')}</h1>
       </div>
 
       <form onSubmit={handleSave} className="settings-form">
         {/* Section 1: Business Details */}
         <section className="settings-section card">
-          <h3 className="section-title">1. Maklumat Syarikat & Kedai</h3>
+          <h3 className="section-title">{tr('compInfo')}</h3>
           
           <div className="grid-2">
             <div className="form-group">
-              <label className="form-label">Nama Syarikat</label>
+              <label className="form-label">{tr('compName')}</label>
               <input
                 type="text"
                 name="company_name"
@@ -248,7 +250,7 @@ export default function Settings() {
               />
             </div>
             <div className="form-group">
-              <label className="form-label">No. Telefon</label>
+              <label className="form-label">{tr('phoneNo')}</label>
               <input
                 type="text"
                 name="company_phone"
@@ -261,7 +263,7 @@ export default function Settings() {
           </div>
 
           <div className="form-group">
-            <label className="form-label">Alamat Kedai</label>
+            <label className="form-label">{tr('storeAddress')}</label>
             <textarea
               name="company_address"
               value={settings.company_address}
@@ -275,7 +277,7 @@ export default function Settings() {
 
           <div className="grid-2">
             <div className="form-group">
-              <label className="form-label">Logo Syarikat (Maksimum 500KB)</label>
+              <label className="form-label">{tr('compLogo')}</label>
               <div className="file-upload-wrapper">
                 <input
                   type="file"
@@ -285,7 +287,7 @@ export default function Settings() {
                   className="file-input-hidden"
                 />
                 <label htmlFor="company_logo_input" className="btn btn-secondary btn-sm">
-                  <Upload size={14} /> Muat Naik Logo
+                  <Upload size={14} /> {tr('uploadLogo')}
                 </label>
                 {settings.company_logo && (
                   <div className="preview-container">
@@ -295,7 +297,7 @@ export default function Settings() {
                       onClick={() => setSettings(prev => ({ ...prev, company_logo: '' }))}
                       className="btn-text btn-delete-img"
                     >
-                      Padam
+                      {tr('delete')}
                     </button>
                   </div>
                 )}
@@ -303,7 +305,7 @@ export default function Settings() {
             </div>
 
             <div className="form-group">
-              <label className="form-label">Prefix Nombor Invoice</label>
+              <label className="form-label">{tr('invoicePrefix')}</label>
               <input
                 type="text"
                 name="invoice_prefix"
@@ -313,18 +315,18 @@ export default function Settings() {
                 placeholder="Contoh: NO."
                 required
               />
-              <span className="helper-text">Prefix hadapan bagi nombor invoice (cth: NO.00001)</span>
+              <span className="helper-text">{tr('invoicePrefixHelp')}</span>
             </div>
           </div>
         </section>
 
         {/* Section 2: Payment Details */}
         <section className="settings-section card">
-          <h3 className="section-title">2. Maklumat Pembayaran</h3>
+          <h3 className="section-title">{tr('paymentInfo')}</h3>
           
           <div className="grid-3">
             <div className="form-group">
-              <label className="form-label">Nama Bank</label>
+              <label className="form-label">{tr('bankName')}</label>
               <input
                 type="text"
                 name="bank_name"
@@ -335,7 +337,7 @@ export default function Settings() {
               />
             </div>
             <div className="form-group">
-              <label className="form-label">No. Akaun Bank</label>
+              <label className="form-label">{tr('bankAccNo')}</label>
               <input
                 type="text"
                 name="bank_account_no"
@@ -346,7 +348,7 @@ export default function Settings() {
               />
             </div>
             <div className="form-group">
-              <label className="form-label">Nama Akaun</label>
+              <label className="form-label">{tr('accName')}</label>
               <input
                 type="text"
                 name="bank_account_name"
@@ -359,7 +361,7 @@ export default function Settings() {
           </div>
 
           <div className="form-group">
-            <label className="form-label">Kod QR DuitNow (Maksimum 500KB)</label>
+            <label className="form-label">{tr('qrCode')}</label>
             <div className="file-upload-wrapper">
               <input
                 type="file"
@@ -369,7 +371,7 @@ export default function Settings() {
                 className="file-input-hidden"
               />
               <label htmlFor="qr_code_input" className="btn btn-secondary btn-sm">
-                <Upload size={14} /> Muat Naik Kod QR
+                <Upload size={14} /> {tr('uploadQR')}
               </label>
               {settings.qr_code && (
                 <div className="preview-container">
@@ -379,7 +381,7 @@ export default function Settings() {
                     onClick={() => setSettings(prev => ({ ...prev, qr_code: '' }))}
                     className="btn-text btn-delete-img"
                   >
-                    Padam
+                    {tr('delete')}
                   </button>
                 </div>
               )}
@@ -389,9 +391,9 @@ export default function Settings() {
 
         {/* Section 3: Terms & Conditions */}
         <section className="settings-section card">
-          <h3 className="section-title">3. Terma & Syarat Kedai (Nota Invoice)</h3>
+          <h3 className="section-title">{tr('termsTitle')}</h3>
           <div className="form-group">
-            <label className="form-label">Syarat & Peraturan Perniagaan</label>
+            <label className="form-label">{tr('termsLabel')}</label>
             <textarea
               name="terms"
               value={settings.terms}
@@ -401,15 +403,15 @@ export default function Settings() {
               className="form-control"
               style={{ resize: 'none' }}
             ></textarea>
-            <span className="helper-text">Satu ayat per baris. Teks ini akan dicetak di bahagian nota kaki invoice.</span>
+            <span className="helper-text">{tr('termsHelp')}</span>
           </div>
         </section>
 
         {/* Section 4: Supabase Sync Settings */}
         <section className="settings-section card">
-          <h3 className="section-title">4. Integrasi Pangkalan Data Supabase (Awan)</h3>
+          <h3 className="section-title">{tr('dbTitle')}</h3>
           <p className="section-desc">
-            Masukkan maklumat pangkalan data Supabase anda untuk mengaktifkan penyegerakan data di antara peranti (komputer kedai dan telefon bimbit). Jika dikosongkan, sistem akan kembali kepada **Mod LocalStorage**.
+            {tr('dbDesc')}
           </p>
 
           <div className="form-group">
@@ -446,12 +448,12 @@ export default function Settings() {
               onClick={testSupabaseConnection}
               className="btn btn-secondary"
             >
-              Uji Sambungan
+              {tr('testConnection')}
             </button>
 
             {testStatus === 'testing' && (
               <span className="status-msg testing">
-                <RefreshCw className="spinner" size={16} /> Sedang menguji sambungan database...
+                <RefreshCw className="spinner" size={16} /> {tr('testingDb')}
               </span>
             )}
             
@@ -471,13 +473,13 @@ export default function Settings() {
 
         {/* Section 5: Backup & Restore */}
         <section className="settings-section card">
-          <h3 className="section-title">5. Sandaran Data (Backup & Restore)</h3>
+          <h3 className="section-title">{tr('backupTitle')}</h3>
           <p className="section-desc">
-            Gunakan fungsi ini untuk memuat turun semua rekod data anda ke fail komputer anda bagi keselamatan, atau memulihkan data lama sekiranya anda menukar peranti atau melaraskan pelayar web.
+            {tr('backupDesc')}
           </p>
           <div className="backup-actions">
             <button type="button" onClick={handleBackup} className="btn btn-secondary">
-              <Download size={14} /> Muat Turun Data (Export JSON)
+              <Download size={14} /> {tr('downloadBackup')}
             </button>
             
             <div className="restore-wrapper">
@@ -489,7 +491,7 @@ export default function Settings() {
                 className="file-input-hidden"
               />
               <label htmlFor="restore_input" className="btn btn-secondary">
-                <FileSpreadsheet size={14} /> Muat Naik Data (Import JSON)
+                <FileSpreadsheet size={14} /> {tr('uploadRestore')}
               </label>
             </div>
           </div>
@@ -498,12 +500,12 @@ export default function Settings() {
         {/* Form Actions */}
         <div className="form-actions">
           <button type="submit" className="btn btn-primary" disabled={loading}>
-            <Save size={16} /> {loading ? 'Menyimpan...' : 'Simpan Tetapan'}
+            <Save size={16} /> {loading ? 'Menyimpan...' : tr('saveSettings')}
           </button>
           
           {saveStatus === 'success' && (
             <span className="save-status-msg success">
-              <CheckCircle2 size={16} /> Tetapan berjaya disimpan!
+              <CheckCircle2 size={16} /> {tr('settingsSaved')}
             </span>
           )}
         </div>

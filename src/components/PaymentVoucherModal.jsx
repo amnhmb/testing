@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { X, Printer } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function PaymentVoucherModal({ isOpen, onClose, entry, settings }) {
+  const { tr } = useLanguage();
   const [scale, setScale] = useState(1);
   const [zoom, setZoom] = useState(1);
   const lastTapRef = useRef(0);
@@ -59,7 +61,7 @@ export default function PaymentVoucherModal({ isOpen, onClose, entry, settings }
           <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
             <h3 style={{ fontSize: '0.75rem', fontWeight: 800, margin: 0, letterSpacing: '0.5px' }}>BAUCAR LEJAR</h3>
             <button onClick={handlePrint} className="btn btn-primary btn-sm" style={{ display: 'flex', gap: '0.35rem', alignItems: 'center', padding: '0.4rem 0.8rem' }}>
-              <Printer size={13} /> CETAK
+              <Printer size={13} /> {tr('print')}
             </button>
           </div>
           <button className="modal-close" onClick={onClose} style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-dark)', display: 'flex', alignItems: 'center', padding: 0 }}>

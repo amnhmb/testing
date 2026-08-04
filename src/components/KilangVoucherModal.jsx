@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { X, Printer } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function KilangVoucherModal({ isOpen, onClose, invoice, settings }) {
+  const { tr } = useLanguage();
   const [payTo, setPayTo] = useState('Kilang Cetak Baju / Tukang Jahit');
   const [scale, setScale] = useState(1);
   const [zoom, setZoom] = useState(1);
@@ -73,8 +75,8 @@ export default function KilangVoucherModal({ isOpen, onClose, invoice, settings 
         <div className="modal-header print-controls no-print" style={{ padding: '0.75rem 1.25rem', borderBottom: '1px solid var(--border-color)', display: 'flex', alignItems: 'center', width: '100%', boxSizing: 'border-box' }}>
           <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center', flex: 1, minWidth: 0 }}>
             <h3 style={{ fontSize: '0.75rem', fontWeight: 800, margin: 0, letterSpacing: '0.5px' }}>BAUCAR KILANG</h3>
-            <button onClick={handlePrint} className="btn btn-primary btn-sm" style={{ display: 'flex', gap: '0.35rem', alignItems: 'center', padding: '0.4rem 0.8rem' }}>
-              <Printer size={13} /> CETAK
+            <button onClick={() => window.print()} className="btn btn-primary btn-sm" style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', padding: '0.4rem 0.8rem' }}>
+              <Printer size={13} /> {tr('print')}
             </button>
           </div>
           <button className="modal-close" onClick={onClose} style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-dark)', display: 'flex', alignItems: 'center', padding: 0 }}>

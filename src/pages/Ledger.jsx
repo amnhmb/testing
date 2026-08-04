@@ -107,7 +107,7 @@ export default function Ledger() {
           className="btn btn-primary" 
           style={{ width: '100%', padding: '1rem', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '0.5rem', fontWeight: 'bold' }}
         >
-          <Plus size={18} /> TAMBAH PERBELANJAAN (Sewa, Gaji, Bil, dll)
+          <Plus size={18} /> {tr('addExpense')}
         </button>
       </div>
 
@@ -121,22 +121,22 @@ export default function Ledger() {
           <table className="table">
             <thead>
               <tr>
-                <th style={{ textAlign: 'left' }}>Tarikh</th>
-                <th style={{ textAlign: 'left' }}>Kategori</th>
-                <th style={{ textAlign: 'left' }}>Keterangan</th>
-                <th style={{ textAlign: 'center' }}>Jenis</th>
-                <th style={{ textAlign: 'right', paddingRight: '1.5rem' }}>Jumlah (RM)</th>
-                <th style={{ textAlign: 'center' }}>Tindakan</th>
+                <th style={{ textAlign: 'left' }}>{tr('date')}</th>
+                <th style={{ textAlign: 'left' }}>{tr('category')}</th>
+                <th style={{ textAlign: 'left' }}>{tr('description')}</th>
+                <th style={{ textAlign: 'center' }}>{tr('type')}</th>
+                <th style={{ textAlign: 'right', paddingRight: '1.5rem' }}>{tr('amount')}</th>
+                <th style={{ textAlign: 'center' }}>{tr('actions')}</th>
               </tr>
             </thead>
             <tbody>
               {loading ? (
                 <tr>
-                  <td colSpan="6" style={{ textAlign: 'center', padding: '2rem' }}>Memuatkan transaksi...</td>
+                  <td colSpan="6" style={{ textAlign: 'center', padding: '2rem' }}>{tr('loadingData')}</td>
                 </tr>
               ) : entries.length === 0 ? (
                 <tr>
-                  <td colSpan="6" style={{ textAlign: 'center', padding: '2rem' }}>Tiada rekod transaksi.</td>
+                  <td colSpan="6" style={{ textAlign: 'center', padding: '2rem' }}>{tr('noData')}</td>
                 </tr>
               ) : (
                 entries.map(e => (
@@ -190,9 +190,9 @@ export default function Ledger() {
         {/* Mobile Cards List (visible only under 768px) */}
         <div className="mobile-cards-list mobile-only">
           {loading ? (
-            <div className="loading-state" style={{ padding: '2rem', textAlign: 'center', color: 'var(--text-muted)' }}>Memuatkan transaksi...</div>
+            <div className="loading-state" style={{ padding: '2rem', textAlign: 'center', color: 'var(--text-muted)' }}>{tr('loadingData')}</div>
           ) : entries.length === 0 ? (
-            <div className="empty-state" style={{ padding: '2rem', textAlign: 'center', color: 'var(--text-muted)' }}>Tiada rekod transaksi.</div>
+            <div className="empty-state" style={{ padding: '2rem', textAlign: 'center', color: 'var(--text-muted)' }}>{tr('noData')}</div>
           ) : (
             entries.map(e => (
               <div key={e.id} className="mobile-card" onClick={() => handleRowClick(e)} style={{ cursor: e.type === 'OUT' ? 'pointer' : 'default' }}>
@@ -227,7 +227,7 @@ export default function Ledger() {
                     className="btn btn-secondary btn-sm" 
                     style={{ color: 'var(--primary-red)', borderColor: '#FEE2E2' }}
                   >
-                    <Trash2 size={12} /> Padam
+                    <Trash2 size={12} /> {tr('delete')}
                   </button>
                 </div>
               </div>

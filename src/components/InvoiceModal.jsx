@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getClients, saveInvoice, getNextInvoiceNo, getInvoices } from '../services/storage';
 import { X, Plus, Trash2, Upload, AlertTriangle, Save, Check, ChevronDown, ChevronUp } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 import { SIZES, ADULT_SIZES, KID_SIZES, getBasePrice, getSizeCost } from '../data/sizePricing';
 import { generateUUID } from '../utils/uuid.js';
 import { MATERIALS, CUTTINGS, NECKS } from '../data/constants.js';
@@ -266,6 +267,7 @@ const createEmptyBannerItem = () => ({
 });
 
 export default function InvoiceModal({ invoice, prefilledClient, onClose, onSaveSuccess }) {
+  const { tr } = useLanguage();
   const [clients, setClients] = useState([]);
   const [clientSearch, setClientSearch] = useState('');
   const [showClientSuggestions, setShowClientSuggestions] = useState(false);
@@ -737,8 +739,7 @@ export default function InvoiceModal({ invoice, prefilledClient, onClose, onSave
   const totalDiscount = discountType === 'bulk' ? (parseFloat(discountValue) || 0) : ((parseFloat(discountValue) || 0) * totalQty);
   const grandTotal = Math.max(0, grossSubtotal - totalDiscount);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSave = async (e) => {
     if (!clientName.trim()) {
       alert('Sila masukkan nama pelanggan.');
       return;
@@ -823,7 +824,7 @@ export default function InvoiceModal({ invoice, prefilledClient, onClose, onSave
           </button>
         </div>
 
-        <form onSubmit={handleSubmit}>
+        <form>
           <div className="modal-body form-modal-body">
             
             {/* Row 1: Basic Details & Payment Info */}
@@ -2037,11 +2038,11 @@ export default function InvoiceModal({ invoice, prefilledClient, onClose, onSave
           </div>
 
           <div className="modal-footer">
-            <button type="button" onClick={onClose} className="btn btn-secondary">
-              Batal
+            <button type="button" onClick={onClose} className="btn btn-secondary" disabled={loading}>
+              {tr('cancel')}
             </button>
-            <button type="submit" className="btn btn-primary" disabled={loading}>
-              <Save size={16} /> {loading ? 'Menyimpan...' : 'Simpan Invoice'}
+            <button type="button" onClick={handleSave} className="btn btn-primary" disabled={loading}>
+              <Save size={16} /> {loading ? 'Menyimpan...' : tr('saveInvoice')}
             </button>
           </div>
         </form>
