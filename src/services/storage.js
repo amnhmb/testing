@@ -480,40 +480,95 @@ export const updateManufacturingStatus = async (id, order_status, pengeluaranVal
   return saved !== null;
 };
 
-// --- LEDGER SERVICE (LOCAL STORAGE ONLY FOR NOW) ---
+// --- LEDGER SERVICE ---
 export const getLedger = async () => {
+  const client = getSupabaseClient();
+  if (client) {
+    try {
+      const { data, error } = await client
+        .from('ledger')
+        .select('*')
+        .order('recorded_at', { ascending: false });
+      if (error) throw error;
+      return data || [];
+    } catch (e) {
+      console.error('Error fetching ledger from Supabase:', e);
+    }
+  }
+
+  // LocalStorage Fallback
   const stored = localStorage.getItem(STORAGE_KEYS.LEDGER);
   return stored ? JSON.parse(stored) : [];
 };
 
 export const saveLedgerEntry = async (entryData) => {
-  const ledger = await getLedger();
+  const client = getSupabaseClient();
   let finalEntry = { ...entryData, updated_at: new Date().toISOString() };
   
-  if (finalEntry.id) {
+  if (!finalEntry.id) {
+    finalEntry.id = client ? undefined : generateUUID(); // Supabase will auto-gen UUID
+    finalEntry.recorded_at = finalEntry.recorded_at || new Date().toISOString();
+  }
+  
+  let savedEntry = null;
+  
+  if (client) {
+    try {
+      const { data, error } = await client
+        .from('ledger')
+        .upsert(finalEntry)
+        .select()
+        .single();
+      if (error) throw error;
+      savedEntry = data;
+    } catch (e) {
+      console.error('Error saving ledger entry to Supabase:', e);
+    }
+  }
+  
+  if (!savedEntry) {
+    // LocalStorage Fallback
+    const ledger = await getLedger();
+    if (!finalEntry.id) {
+      finalEntry.id = generateUUID();
+      finalEntry.recorded_at = finalEntry.recorded_at || new Date().toISOString();
+    }
     const index = ledger.findIndex(l => l.id === finalEntry.id);
     if (index !== -1) {
       ledger[index] = finalEntry;
     } else {
       ledger.push(finalEntry);
     }
-  } else {
-    finalEntry.id = generateUUID();
-    finalEntry.recorded_at = finalEntry.recorded_at || new Date().toISOString();
-    ledger.push(finalEntry);
+    
+    // Sort by date descending
+    ledger.sort((a, b) => new Date(b.recorded_at) - new Date(a.recorded_at));
+    
+    localStorage.setItem(STORAGE_KEYS.LEDGER, JSON.stringify(ledger));
+    savedEntry = finalEntry;
   }
   
-  // Sort by date descending
-  ledger.sort((a, b) => new Date(b.recorded_at) - new Date(a.recorded_at));
-  
-  localStorage.setItem(STORAGE_KEYS.LEDGER, JSON.stringify(ledger));
-  return finalEntry;
+  return savedEntry;
 };
 
 export const deleteLedgerEntry = async (id) => {
-  const ledger = await getLedger();
-  const filtered = ledger.filter(l => l.id !== id);
-  localStorage.setItem(STORAGE_KEYS.LEDGER, JSON.stringify(filtered));
+  const client = getSupabaseClient();
+  
+  if (client) {
+    try {
+      const { error } = await client
+        .from('ledger')
+        .delete()
+        .eq('id', id);
+      if (error) throw error;
+    } catch (e) {
+      console.error('Error deleting ledger entry from Supabase:', e);
+    }
+  } else {
+    // LocalStorage Fallback
+    const ledger = await getLedger();
+    const filtered = ledger.filter(l => l.id !== id);
+    localStorage.setItem(STORAGE_KEYS.LEDGER, JSON.stringify(filtered));
+  }
   return true;
 };
 
