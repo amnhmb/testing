@@ -1,6 +1,0 @@
-# Core AI Guidelines (Thirty One Lab)
-
-Whenever you analyze or write code for this project, you MUST read and adhere to the business guidelines outlined in the following AI profiles:
-- Please refer to the `docs/ai_profiles/` directory to understand the company's financial logic, database structure (Supabase), graphic design handoff processes, and UI/UX styling rules.
-- Never alter the database structure or business logic without checking `Financial_Team_Profile.md` and `Financial_Workflow_Architecture.md`.
-- Always ensure UI/UX code aligns strictly with the rules set in `Designer_Team_Profile.md`.
