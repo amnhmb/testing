@@ -37,13 +37,13 @@
   --space-8: 64px;
 
   /* ---- Asset paths ---- */
-  --img-corner-tl: url("/assets/songket/border_upper_left.webp");
-  --img-corner-br: url("/assets/songket/border_lower_right.webp");
-  --img-bg-pattern: url("/assets/songket/background_pattern.webp");
-  --img-strip: url("/assets/songket/strip_mirrored.webp");
-  --img-crown: url("/assets/songket/crown.webp");
-  --img-divider: url("/assets/songket/divider.webp");
-  --img-icon: url("/assets/songket/set_icon.webp");
+  --img-corner-tl: url("../assets/songket/border_upper_left.webp");
+  --img-corner-br: url("../assets/songket/border_lower_right.webp");
+  --img-bg-pattern: url("../assets/songket/badan_kain.png");
+  --img-strip: url("../assets/songket/tali_air.png");
+  --img-crown: url("../assets/songket/crown.webp");
+  --img-divider: url("../assets/songket/divider.webp");
+  --img-icon: url("../assets/songket/set_icon.webp");
 }
 
 /* ============================================================
@@ -168,8 +168,8 @@ button:focus-visible, a:focus-visible, input:focus-visible {
 
 .frame-songket .corner {
   position: absolute;
-  width: 55px;
-  height: 55px;
+  width: 66px;
+  height: 66px;
   background-size: contain;
   background-repeat: no-repeat;
   pointer-events: none;
@@ -253,7 +253,7 @@ button:focus-visible, a:focus-visible, input:focus-visible {
   display: block;
   width: 100%;
   max-width: 320px;
-  height: 32px;
+  height: 48px;
   margin: var(--space-6) auto;
   background-image: var(--img-divider);
   background-size: contain;

@@ -211,8 +211,8 @@ body {
 .bg-pattern::before { opacity: 0.1 !important; }
 body { background-color: #e5e5e5; }
 .btn-primary::before, .btn-primary::after { display: none !important; }
-.strip-border { height: 42px !important; background-color: var(--bg); position: relative; z-index: 2; }
-.crown-ornament { max-width: 350px !important; height: 48px !important; }
+.strip-border { height: 42px !important; background-color: var(--bg); position: relative; z-index: 2; border-top: 1px solid rgba(212, 175, 55, 0.3); border-bottom: 1px solid rgba(212, 175, 55, 0.3); }
+.crown-ornament { max-width: 350px !important; height: 72px !important; }
 
 /* Navbar & Footer Base */
 .navbar-songket {
@@ -378,8 +378,9 @@ html {
 
 .wing-flourish {
   width: 100%;
-  max-width: 450px;
-  height: 45px;
+  max-width: 320px;
+  height: auto;
+  object-fit: contain;
   margin: 1rem auto 1.5rem auto;
   display: block;
 }
