@@ -136,25 +136,5 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // PREVENT AUDIO PLAYER FROM OVERLAPPING FOOTER
-  const footer = document.getElementById('base-footer');
-  const audioPlayer = document.querySelector('.audio-player-fixed');
-  
-  if(footer && audioPlayer) {
-    window.addEventListener('scroll', () => {
-      const footerRect = footer.getBoundingClientRect();
-      const viewportHeight = window.innerHeight;
-      
-      // If the top of the footer is visible in the viewport
-      if (footerRect.top < viewportHeight) {
-        // Calculate how much of the footer is exposed
-        const overlap = viewportHeight - footerRect.top;
-        // Push the audio player up by the exposed amount
-        audioPlayer.style.transform = `translateY(-${overlap}px)`;
-      } else {
-        // Reset to original fixed position
-        audioPlayer.style.transform = 'translateY(0)';
-      }
-    });
-  }
+
 });
