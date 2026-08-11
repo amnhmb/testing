@@ -1,3 +1,15 @@
+// Force page to start at top on reload and clear hash
+if (window.history.scrollRestoration) {
+  window.history.scrollRestoration = 'manual';
+}
+window.addEventListener('beforeunload', () => {
+  window.scrollTo(0, 0);
+});
+if (window.location.hash) {
+  window.history.replaceState(null, null, window.location.pathname);
+}
+window.scrollTo(0, 0);
+
 // Scroll Reveal Animation
 document.addEventListener('DOMContentLoaded', () => {
   const revealElements = document.querySelectorAll('.section-reveal');
@@ -137,4 +149,93 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
+});
+
+
+/* ==========================================================================
+   STANDARD PACKAGE ADDITIONS
+   ========================================================================== */
+
+document.addEventListener('DOMContentLoaded', () => {
+  // FAQ Accordion Logic
+  const faqItems = document.querySelectorAll('.faq-item');
+  faqItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const isActive = item.classList.contains('active');
+      faqItems.forEach(i => i.classList.remove('active'));
+      if (!isActive) item.classList.add('active');
+    });
+  });
+
+  // Carousel Logic (Scroll Snap with Indicators)
+  const track = document.getElementById('story-carousel');
+  const slides = document.querySelectorAll('.story-slide');
+  const indicators = document.querySelectorAll('.story-dot');
+  const prevBtn = document.getElementById('carousel-prev');
+  const nextBtn = document.getElementById('carousel-next');
+
+  if (track && slides.length > 0) {
+    let currentIndex = 0;
+
+    const updateCarousel = (index) => {
+      track.scrollTo({ left: slides[index].offsetLeft, behavior: 'smooth' });
+      indicators.forEach((ind, i) => {
+        if (i === index) ind.classList.add('active');
+        else ind.classList.remove('active');
+      });
+    };
+
+    track.addEventListener('scroll', () => {
+      const scrollPosition = track.scrollLeft;
+      const slideWidth = slides[0].offsetWidth;
+      currentIndex = Math.round(scrollPosition / slideWidth);
+      
+      indicators.forEach((ind, i) => {
+        if (i === currentIndex) {
+          ind.classList.add('active');
+          ind.classList.remove('bg-gray-300');
+        } else {
+          ind.classList.remove('active');
+          ind.classList.add('bg-gray-300');
+        }
+      });
+    });
+
+    prevBtn?.addEventListener('click', () => {
+      if (currentIndex > 0) {
+        currentIndex--;
+        updateCarousel(currentIndex);
+      }
+    });
+
+    nextBtn?.addEventListener('click', () => {
+      if (currentIndex < slides.length - 1) {
+        currentIndex++;
+        updateCarousel(currentIndex);
+      }
+    });
+
+    indicators.forEach((ind, i) => {
+      ind.addEventListener('click', () => {
+        currentIndex = i;
+        updateCarousel(currentIndex);
+      });
+    });
+  }
+
+  // RSVP Form Expand Logic based on Kehadiran
+  const attendanceRadios = document.querySelectorAll('input[name="attendance"]');
+  const detailsContainer = document.getElementById('rsvp-details-container');
+  
+  if (attendanceRadios.length > 0 && detailsContainer) {
+    attendanceRadios.forEach(radio => {
+      radio.addEventListener('change', (e) => {
+        if (e.target.value === 'ya') {
+          detailsContainer.style.maxHeight = detailsContainer.scrollHeight + "px";
+        } else {
+          detailsContainer.style.maxHeight = "0";
+        }
+      });
+    });
+  }
 });

@@ -1,3 +1,7 @@
+---
+trigger: always_on
+---
+
 ```text
 +-----------------------------------+
 |            [ 12:00 PM ]           |  <-- Skrin Telefon
@@ -5,7 +9,7 @@
 | [Menu]        A & H               |  <-- Navbar dengan Menu Tepi
 +-----------------------------------+
 |                                   |
-|       ( Bismillah Image )         |  <-- Bismillah
+|       ( Bismillah Image )         |  <-- Bismillah (dari index.html)
 |  Assalamualaikum W.B.T & Salam... |  <-- Teks Aluan
 |  Dengan penuh kesyukuran...       |
 |                                   |
@@ -27,6 +31,8 @@
 |  11:00 AM - 4:00 PM               |
 |  Dewan Seri Angsana, Kuala Lumpur |  <-- Lokasi
 |                                   |
+|  [  Simpan ke Kalendar ]        |  <-- [+] PENAMBAHAN STANDARD
+|                                   |
 |  Tema Warna                       |  <-- Swatch Warna
 |  [■] Hijau [■] Emas [■] Putih     |
 |                                   |
@@ -36,11 +42,50 @@
 |  [  Hubungi Wakil      ]        |  <-- Butang Kenalan (Papar Modal)
 |                                   |
 |                                   |
-|  Borang RSVP                      |
+|  Atur Cara Majlis                 |  <-- [+] PENAMBAHAN STANDARD
+|  11:00 AM - Ketibaan Tetamu       |
+|  12:30 PM - Ketibaan Pengantin    |
+|  01:00 PM - Jamuan Makan          |
+|  04:00 PM - Majlis Tamat          |
+|                                   |
+|                                   |
+|  Kisah Kami                       |  <-- [+] PENAMBAHAN STANDARD
+|  [ < ] [Gambar 1] [Gambar 2] [ > ]|  (Carousel / Image Slider)
+|  Pertemuan pertama...             |
+|                                   |
+|                                   |
+|  Ucapan Guestbook                 |  <-- [+] PENAMBAHAN STANDARD
+|  [ "Selamat pengantin baru!" ]    |  (Feed / Senarai Ucapan)
+|  [ - Abu & Keluarga          ]    |
+|                                   |
+|                                   |
+|  Info Penginapan                  |  <-- [+] PENAMBAHAN STANDARD
+|  - Hotel Seri Malaysia            |
+|  - Homestay Bonda                 |
+|                                   |
+|                                   |
+|  Soalan Lazim (FAQ)               |  <-- [+] PENAMBAHAN STANDARD
+|  [+] Di mana tempat letak kereta? |
+|  [+] Boleh bawa kanak-kanak?      |
+|                                   |
+|                                   |
+|  Media Sosial Kami                |  <-- [+] PENAMBAHAN STANDARD
+|  [IG] @aisyah [TikTok] @hakim     |
+|  Gunakan hashtag: #AisyahHakim2026|
+|                                   |
+|                                   |
+|  Borang RSVP & Guestbook          |
 |  +-----------------------------+  |
 |  | Nama Penuh: [             ] |  |
-|  | Kehadiran: (o) Hadir ( ) Tdk|  |
-|  | Jumlah Pax: [ 2 |v]         |  |
+|  | No. Telefon: [            ] |  |  <-- [+] PENAMBAHAN STANDARD
+|  | Kehadiran: (o) Ya ( ) Tidak |  |
+|  | Sesi: [ Pagi | Petang |v]   |  |  <-- [+] PENAMBAHAN STANDARD (Pemilih Sesi)
+|  | Bil. Dewasa: [ 2 |v]        |  |  <-- [+] PENAMBAHAN STANDARD
+|  | Bil. Kanak-kanak: [ 1 |v]   |  |  <-- [+] PENAMBAHAN STANDARD
+|  | Nota Alahan (Pilihan):      |  |  <-- [+] PENAMBAHAN STANDARD
+|  | [                         ] |  |
+|  | Ucapan (Guestbook):         |  |  <-- [+] PENAMBAHAN STANDARD
+|  | [                         ] |  |
 |  |                             |  |
 |  |      [ Hantar RSVP ]        |  |
 |  +-----------------------------+  |
@@ -55,14 +100,16 @@
 |  +-----------------------------+  |
 |                                   |
 |                                   |
-|       Dicipta oleh [Logo MK]      |  <-- Footer
-|       Ikuti Kami                  |
+|  [ Cetak Kad Jemputan ]          |  <-- [+] PENAMBAHAN STANDARD
+|                                   |
+|                                   |
+|       Dicipta oleh [Logo MK]      |  <-- Footer (dari index.html)
 |    [IG] [TikTok] [FB]             |
 |    Hubungi Kami • Terma & Syarat  |
 |    © 2026 Momen Kita            |
 |                                   |
 |                                   |
-| [▶] Play Muzik                    | <-- Fixed Bottom Audio Player
+| [Muzik] [▶||||] Play Muzik        | <-- Fixed Bottom Audio Player
 +-----------------------------------+
 
 +-----------------------------------+
@@ -74,7 +121,10 @@
 |                                   |
 |  - Utama                          |
 |  - Maklumat Majlis                |
-|  - RSVP                           |
+|  - Atur Cara                      |  <-- [+] PENAMBAHAN STANDARD
+|  - Kisah Kami & Galeri            |  <-- [+] PENAMBAHAN STANDARD
+|  - Info & FAQ                     |  <-- [+] PENAMBAHAN STANDARD
+|  - RSVP & Guestbook               |
 |  - Salam Kaut                     |
 +-----------------------------------+
 ```

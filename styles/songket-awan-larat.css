@@ -306,26 +306,29 @@ button:focus-visible, a:focus-visible, input:focus-visible {
    ============================================================ */
 
 .section-heading {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  text-align: center;
   margin-bottom: var(--space-4);
+  display: block;
 }
 
 .section-heading .icon {
+  display: inline-block;
   width: 24px;
   height: 24px;
   background-image: var(--img-icon);
   background-size: contain;
   background-repeat: no-repeat;
-  flex-shrink: 0;
-  transform: translateY(2px); /* Visually center with text */
+  vertical-align: middle;
+  margin-right: 8px;
+  transform: translateY(0);
 }
 
 .section-heading h2 {
+  display: inline;
   font-size: 22px;
   font-weight: 600;
   margin: 0;
+  vertical-align: middle;
 }
 
 /* ============================================================
