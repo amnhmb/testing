@@ -27,6 +27,7 @@ body {
 
 .bismillah-text {
   font-size: 44px;
+  font-family: 'Amiri', serif;
   color: #103b3a; /* Dark teal */
 }
 .greeting-text {
@@ -209,7 +210,10 @@ body {
   transform: translateY(0);
 }
 .bg-pattern::before { opacity: 0.1 !important; }
-body { background-color: #e5e5e5; }
+
+@media (min-width: 500px) {
+  body { background-color: #e5e5e5; }
+}
 .btn-primary::before, .btn-primary::after { display: none !important; }
 .strip-border { height: 42px !important; background-color: var(--bg); position: relative; z-index: 2; border-top: 1px solid rgba(212, 175, 55, 0.3); border-bottom: 1px solid rgba(212, 175, 55, 0.3); }
 .crown-ornament { max-width: 350px !important; height: 72px !important; }
