@@ -571,7 +571,7 @@ html {
   top: 16px; /* 1rem */
   width: 32px;
   height: 32px;
-  background-image: url('./assets/songket/timeline_motif.png');
+  background-image: url('./assets/songket/timeline_motif.webp');
   background-size: 65%;
   background-repeat: no-repeat;
   background-position: center;
@@ -1030,3 +1030,603 @@ html {
 
 .menu-link { text-decoration: none; color: inherit; transition: color 0.3s; }
 .menu-link:hover { color: var(--accent); }
+
+/* ==========================================================================
+   ENVELOPE COVER & TOAST NOTIFICATION
+   ========================================================================== */
+.envelope-cover {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: var(--bg);
+  background-image: url('./assets/songket/motif%20awan%20larat.webp'); /* Pattern overlay */
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: overlay;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: transform 1.5s ease-in-out 1.5s, opacity 1.5s ease-in-out 1.5s;
+  overflow: hidden;
+}
+
+.envelope-cover.open {
+  transform: scale(5);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.envelope {
+  position: relative;
+  width: 320px;
+  height: 220px;
+  background-color: #eaddc7;
+  border-radius: 6px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1500px; /* Essential for smooth 3D rotation */
+}
+
+.envelope-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #d6c6ac;
+  background-image: url('./assets/songket/motif%20awan%20larat.webp');
+  background-size: 50%;
+  background-position: center;
+  background-blend-mode: multiply;
+  opacity: 0.5;
+  border-radius: 6px;
+  z-index: 1;
+}
+
+.envelope-front {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  border-radius: 6px;
+}
+
+.flap-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.flap {
+  width: 100%;
+  height: 100%;
+  background-color: #f7eedf; /* Light ivory paper */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+}
+
+.flap-left-wrapper {
+  filter: drop-shadow(4px 0px 4px rgba(0,0,0,0.1));
+}
+.flap-left {
+  clip-path: polygon(-5% -5%, 52% 51%, -5% 105%);
+  background-color: #f0e6d3;
+}
+
+.flap-right-wrapper {
+  filter: drop-shadow(-4px 0px 4px rgba(0,0,0,0.1));
+}
+.flap-right {
+  clip-path: polygon(105% -5%, 48% 51%, 105% 105%);
+  background-color: #ece1cd;
+}
+
+.flap-bottom-wrapper {
+  filter: drop-shadow(0px -4px 6px rgba(0,0,0,0.15));
+  z-index: 2;
+}
+.flap-bottom {
+  clip-path: polygon(-5% 105%, 50% 46%, 105% 105%);
+}
+
+.envelope-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 4;
+  transform-origin: top;
+  transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.flap-top-wrapper {
+  filter: drop-shadow(0px 5px 8px rgba(0,0,0,0.25));
+}
+.flap-top {
+  clip-path: polygon(-5% -5%, 50% 57%, 105% -5%);
+  background-color: #fcf6ea;
+}
+
+.wax-seal {
+  position: absolute;
+  top: 55%; 
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 55px;
+  height: 55px;
+  background: radial-gradient(circle at 30% 30%, #8a131b, #4a070c); /* Realistic dark red wax */
+  border-radius: 50%;
+  box-shadow: 
+    0 4px 6px rgba(0,0,0,0.4),
+    inset 0 0 8px rgba(0,0,0,0.6),
+    inset 0 2px 3px rgba(255,255,255,0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
+  transition: opacity 0.3s 0.2s;
+}
+.wax-seal::after {
+  content: '';
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  border: 1.5px solid rgba(0,0,0,0.2);
+  border-radius: 50%;
+}
+.wax-seal::before {
+  content: '';
+  position: absolute;
+  width: 58px;
+  height: 56px;
+  background: inherit;
+  border-radius: 45% 55% 40% 60%;
+  z-index: -1;
+  transform: rotate(35deg);
+  box-shadow: inset 0 0 5px rgba(0,0,0,0.3);
+}
+
+.envelope-cover.open .envelope-flap {
+  transform: rotateX(180deg);
+  z-index: 0;
+  transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1), z-index 0s 0.5s; /* Delays z-index change until halfway through rotation */
+}
+.envelope-cover.open .wax-seal {
+  opacity: 0; 
+}
+
+.envelope-letter {
+  position: absolute;
+  bottom: 0;
+  width: 90%;
+  height: 90%;
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: 6px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  transition: transform 1.2s ease-in-out 0.6s; /* Delays moving up until flap opens */
+  text-align: center;
+}
+
+.envelope-cover.open .envelope-letter {
+  transform: translateY(-120px);
+}
+
+.envelope-btn-container {
+  z-index: 5;
+  transition: opacity 0.3s;
+}
+.envelope-cover.open .envelope-btn-container {
+  opacity: 0;
+}
+
+/* Elegant Button */
+.btn-elegant {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 32px;
+  background-color: transparent;
+  color: var(--accent);
+  border: 1.5px solid var(--accent);
+  border-radius: 99px;
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-elegant::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--accent);
+  z-index: -1;
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.4s ease;
+}
+
+.btn-elegant:hover {
+  color: var(--bg);
+  border-color: var(--accent);
+}
+
+.btn-elegant:hover::before {
+  transform: scaleY(1);
+}
+
+/* Toast Notification */
+.toast-notification {
+  position: fixed;
+  bottom: -100px; /* Hidden below screen */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--surface);
+  border: 1px solid rgba(0,0,0,0.1);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  border-radius: 999px;
+  padding: 12px 24px;
+  z-index: 9999;
+  transition: bottom 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+.toast-notification.show {
+  bottom: 40px;
+  opacity: 1;
+}
+.toast-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+/* Body lock when cover is active */
+body.no-scroll {
+  overflow: hidden;
+  height: 100vh;
+}
+
+/* White Fade Overlay */
+.white-fade {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: #ffffff;
+  z-index: 9998;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1.5s ease-in-out;
+}
+.white-fade.active {
+  transition: opacity 0.3s ease-in-out; /* Fades in very fast to block the website */
+  opacity: 1;
+}
+.envelope-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 4;
+  transform-origin: top;
+  transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.flap-top-wrapper {
+  filter: drop-shadow(0px 5px 8px rgba(0,0,0,0.25));
+}
+.flap-top {
+  clip-path: polygon(-5% -5%, 50% 57%, 105% -5%);
+  background-color: #fcf6ea;
+}
+
+.wax-seal {
+  position: absolute;
+  top: 55%; 
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 55px;
+  height: 55px;
+  background: radial-gradient(circle at 30% 30%, #8a131b, #4a070c); /* Realistic dark red wax */
+  border-radius: 50%;
+  box-shadow: 
+    0 4px 6px rgba(0,0,0,0.4),
+    inset 0 0 8px rgba(0,0,0,0.6),
+    inset 0 2px 3px rgba(255,255,255,0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
+  transition: opacity 0.3s 0.2s;
+}
+.wax-seal::after {
+  content: '';
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  border: 1.5px solid rgba(0,0,0,0.2);
+  border-radius: 50%;
+}
+.wax-seal::before {
+  content: '';
+  position: absolute;
+  width: 58px;
+  height: 56px;
+  background: inherit;
+  border-radius: 45% 55% 40% 60%;
+  z-index: -1;
+  transform: rotate(35deg);
+  box-shadow: inset 0 0 5px rgba(0,0,0,0.3);
+}
+
+.envelope-cover.open .envelope-flap {
+  transform: rotateX(180deg);
+  z-index: 0;
+  transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1), z-index 0s 0.5s; /* Delays z-index change until halfway through rotation */
+}
+.envelope-cover.open .wax-seal {
+  opacity: 0; 
+}
+
+.envelope-letter {
+  position: absolute;
+  bottom: 0;
+  width: 90%;
+  height: 90%;
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: 6px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  transition: transform 1.2s ease-in-out 0.6s; /* Delays moving up until flap opens */
+  text-align: center;
+}
+
+.envelope-cover.open .envelope-letter {
+  transform: translateY(-120px);
+}
+
+.envelope-btn-container {
+  z-index: 5;
+  transition: opacity 0.3s;
+}
+.envelope-cover.open .envelope-btn-container {
+  opacity: 0;
+}
+
+/* Elegant Button */
+.btn-elegant {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 32px;
+  background-color: transparent;
+  color: var(--accent);
+  border: 1.5px solid var(--accent);
+  border-radius: 99px;
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-elegant::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--accent);
+  z-index: -1;
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.4s ease;
+}
+
+.btn-elegant:hover {
+  color: var(--bg);
+  border-color: var(--accent);
+}
+
+.btn-elegant:hover::before {
+  transform: scaleY(1);
+}
+
+/* Toast Notification */
+.toast-notification {
+  position: fixed;
+  bottom: -100px; /* Hidden below screen */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--surface);
+  border: 1px solid rgba(0,0,0,0.1);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  border-radius: 999px;
+  padding: 12px 24px;
+  z-index: 9999;
+  transition: bottom 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+.toast-notification.show {
+  bottom: 40px;
+  opacity: 1;
+}
+.toast-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+/* Body lock when cover is active */
+body.no-scroll {
+  overflow: hidden;
+  height: 100vh;
+}
+
+/* White Fade Overlay */
+.white-fade {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: #ffffff;
+  z-index: 9998;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1.5s ease-in-out;
+}
+.white-fade.active {
+  transition: opacity 0.3s ease-in-out; /* Fades in very fast to block the website */
+  opacity: 1;
+}
+
+/* Focus zoom on envelope letter */
+.envelope-cover {
+  transform-origin: 50% 35% !important;
+}
+
+/* Envelope Calligraphy */
+.envelope-calligraphy {
+  position: absolute;
+  top: 15%; /* Position on the upper part of the flap */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 130px;
+  height: auto;
+  z-index: 10;
+  opacity: 0.85; /* Make it look embedded in the paper */
+}
+
+/* Adjust envelope calligraphy higher */
+.envelope-calligraphy {
+  top: 4% !important;
+}
+
+/* Adjust envelope calligraphy higher to counteract transparent padding in the image */
+.envelope-calligraphy {
+  top: -15% !important; 
+}
+
+/* Adjust envelope calligraphy even higher (almost touching hem) */
+.envelope-calligraphy {
+  top: -22% !important; 
+}
+
+/* Adjust envelope calligraphy slightly lower so it doesn't clip */
+.envelope-calligraphy {
+  top: -12% !important; 
+}
+
+/* Black ink effect and hide when envelope opens */
+.envelope-calligraphy {
+  opacity: 0.85 !important;
+  transition: opacity 0.3s ease;
+}
+
+.envelope-cover.open .envelope-calligraphy {
+  opacity: 0 !important;
+}
+
+/* Ensure white background is completely invisible */
+.envelope-calligraphy {
+  mix-blend-mode: multiply !important;
+}
+
+/* Remove mix-blend-mode, use normal transparency */
+.envelope-calligraphy {
+  mix-blend-mode: normal !important;
+}
+
+/* Adjust envelope calligraphy for CROPPED image */
+.envelope-calligraphy {
+  top: 15px !important; 
+}
+
+/* FINAL FIX for envelope calligraphy */
+.envelope-calligraphy {
+  position: absolute !important;
+  top: -12% !important; /* Perfect positioning for the original 1024x1024 image */
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: 140px !important;
+  height: auto !important;
+  z-index: 10 !important;
+  mix-blend-mode: darken !important; /* Perfectly removes pure white without grey artifacts */
+  opacity: 1 !important; /* Must be 1 to prevent grey ghosting on multiply/darken */
+  transition: opacity 0.3s ease !important;
+}
+
+.envelope-cover.open .envelope-calligraphy {
+  opacity: 0 !important;
+}
+
+/* RESET css for calligraphy - use pure standard properties */
+.envelope-calligraphy {
+  position: absolute !important;
+  top: 15px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: 140px !important;
+  height: auto !important;
+  z-index: 10 !important;
+  mix-blend-mode: normal !important; /* NO BLEND MODES */
+  opacity: 1 !important;
+  transition: opacity 0.3s ease !important;
+}
+
+.envelope-cover.open .envelope-calligraphy {
+  opacity: 0 !important;
+}
+
+.envelope-calligraphy {
+  width: 105px !important;
+}

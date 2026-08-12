@@ -14,8 +14,46 @@
   <link rel="stylesheet" href="./styles/songket-awan-larat.css">
   <!-- Custom Styles -->
   <link rel="stylesheet" href="./style.css">
+  
+  <!-- Canvas Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 <body>
+  <!-- ENVELOPE COVER -->
+  <div id="envelope-cover" class="envelope-cover">
+    <div class="envelope">
+      <div class="envelope-back"></div>
+      <div class="envelope-letter">
+        <h2 class="font-serif text-[var(--accent)] text-lg mb-1">Walimatul Urus</h2>
+        <h1 class="font-serif text-[var(--accent)] text-3xl font-bold">Aisyah & Hakim</h1>
+      </div>
+      <div class="envelope-front">
+        <div class="flap-wrapper flap-left-wrapper"><div class="flap flap-left"></div></div>
+        <div class="flap-wrapper flap-right-wrapper"><div class="flap flap-right"></div></div>
+        <div class="flap-wrapper flap-bottom-wrapper"><div class="flap flap-bottom"></div></div>
+      </div>
+      <div class="envelope-flap" id="envelope-flap">
+        <div class="flap-wrapper flap-top-wrapper">
+          <div class="flap flap-top"></div>
+          <img src="./assets/momenkita/assalamualaikum.webp?v=5" class="envelope-calligraphy" alt="Assalamualaikum">
+        </div>
+        <div class="wax-seal">
+          <img src="./assets/momenkita/MK-dafault-transparent.webp" alt="Seal Icon" style="width: 28px; filter: brightness(0) invert(1) opacity(0.85); z-index: 10; margin-top: 3px; margin-left: 2px;">
+        </div>
+      </div>
+    </div>
+    <div class="envelope-btn-container mt-6">
+      <button id="btn-buka-jemputan" class="btn-elegant">
+        Buka Jemputan
+      </button>
+    </div>
+  </div>
+
+  <!-- WHITE FADE OVERLAY -->
+  <div id="white-fade" class="white-fade"></div>
+
+
+
   <div class="container bg-pattern">
     
     <!-- NAVBAR (Base Header) -->
@@ -189,7 +227,7 @@
             <!-- Slide 1 -->
             <div class="story-slide">
               <div class="story-card">
-                <img src="./assets/songket/hero.webp" alt="Pertemuan Pertama" class="story-img">
+                <img src="./assets/songket/pertemuan_pertama.webp" alt="Pertemuan Pertama" class="story-img">
                 <div class="story-content">
                   <h3 class="font-serif mb-2">Pertemuan Pertama</h3>
                   <p class="story-text">Kami mula berkenalan sewaktu sama-sama menuntut di universiti. Dari seorang rakan sekelas, kini menjadi teman hidup.</p>
@@ -199,7 +237,7 @@
             <!-- Slide 2 -->
             <div class="story-slide">
               <div class="story-card">
-                <img src="./assets/songket/hero.webp" alt="Hari Pertunangan" class="story-img" style="filter: sepia(0.3)">
+                <img src="./assets/songket/majlis_tunang.webp" alt="Hari Pertunangan" class="story-img">
                 <div class="story-content">
                   <h3 class="font-serif mb-2">Ikatan Janji</h3>
                   <p class="story-text">Pada tanggal 1 Januari 2026, kami mengikat tali pertunangan dengan restu keluarga kedua-dua belah pihak.</p>
@@ -342,8 +380,8 @@ onclick="document.getElementById('rsvp').scrollIntoView({behavior: 'smooth'})">T
         <h2 class="font-serif">Borang RSVP & Guestbook</h2>
       </div>
       
-      <div class="card-songket">
-        <form id="rsvp-form" onsubmit="event.preventDefault(); alert('RSVP dihantar secara dummy!');">
+      <div class="card-songket mt-4 relative text-left z-10">
+        <form id="rsvp-form" onsubmit="submitRSVP(event)">
           <div class="field-group">
             <label for="rsvp-name">Nama Penuh</label>
             <input type="text" id="rsvp-name" class="input-songket" placeholder="Masukkan nama" required>
@@ -439,12 +477,7 @@ onclick="document.getElementById('rsvp').scrollIntoView({behavior: 'smooth'})">T
     </section>
 
 
-    <!-- CETAK KAD JEMPUTAN -->
-    <div class="text-center padding-y padding-x">
-      <button class="btn-secondary max-w-xs" style="width: 100%; font-size: 0.85rem;" onclick="window.print()">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg> Cetak Kad Jemputan
-      </button>
-    </div>
+
 
     <!-- Strip overlapping footer -->
     <div class="relative w-full">
@@ -581,6 +614,14 @@ onclick="document.getElementById('rsvp').scrollIntoView({behavior: 'smooth'})">T
       </div>
     </div>
 
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toast-notification" class="toast-notification">
+    <div class="toast-content">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+      <span id="toast-message">Terima kasih, RSVP telah direkodkan!</span>
+    </div>
   </div>
 
   <script type="module" src="./main.js"></script>

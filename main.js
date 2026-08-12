@@ -10,6 +10,9 @@ if (window.location.hash) {
 }
 window.scrollTo(0, 0);
 
+// Add no-scroll to body on load to lock scrolling until envelope is opened
+document.body.classList.add('no-scroll');
+
 // Scroll Reveal Animation
 document.addEventListener('DOMContentLoaded', () => {
   const revealElements = document.querySelectorAll('.section-reveal');
@@ -238,4 +241,102 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
+
+  // Envelope Cover Logic
+  const envelopeCover = document.getElementById('envelope-cover');
+  const btnBuka = document.getElementById('btn-buka-jemputan');
+  const bgMusic = document.getElementById('bg-music');
+  const audioText = document.getElementById('audio-text');
+  const whiteFade = document.getElementById('white-fade');
+
+  if (envelopeCover && btnBuka) {
+    btnBuka.addEventListener('click', () => {
+      // 1. Start envelope open animation
+      envelopeCover.classList.add('open');
+      
+      // 2. Remove body scroll lock
+      document.body.classList.remove('no-scroll');
+      
+      // 3. Play music automatically (Disabled for now based on request)
+      /* 
+      if (bgMusic) {
+        bgMusic.play().then(() => {
+          if(audioText) audioText.innerText = 'Pause Muzik';
+          const audioIcon = document.getElementById('audio-icon');
+          const audioWave = document.getElementById('audio-wave');
+          if(audioIcon) audioIcon.style.display = 'none';
+          if(audioWave) audioWave.style.display = 'flex';
+        }).catch(err => console.log('Audio autoplay blocked', err));
+      }
+      */
+
+      // 4. White Fade logic
+      if (whiteFade) {
+        // Start fading to white at 1.2s (right before zoom begins) so it blocks the website
+        setTimeout(() => {
+          whiteFade.classList.add('active');
+        }, 1200);
+
+        // Remove white fade at 3.0s to slowly reveal website
+        setTimeout(() => {
+          whiteFade.classList.remove('active');
+        }, 3000);
+      }
+
+      // 5. Remove cover from DOM after animation completes
+      setTimeout(() => {
+        envelopeCover.style.display = 'none';
+      }, 3000);
+    });
+  }
 });
+
+// Global RSVP Submit Function
+window.submitRSVP = function(event) {
+  event.preventDefault(); // Prevent page reload
+
+  // Show Toast
+  const toast = document.getElementById('toast-notification');
+  if (toast) {
+    toast.classList.add('show');
+    setTimeout(() => {
+      toast.classList.remove('show');
+    }, 4000);
+  }
+
+  // Fire elegant grayscale confetti
+  if (typeof confetti === 'function') {
+    const duration = 3000;
+    const end = Date.now() + duration;
+    
+    // Grayscale colors for formal look
+    const colors = ['#000000', '#555555', '#AAAAAA', '#333333'];
+
+    (function frame() {
+      confetti({
+        particleCount: 3,
+        angle: 60,
+        spread: 55,
+        origin: { x: 0 },
+        colors: colors,
+        gravity: 0.8,
+        scalar: 0.8,
+        ticks: 200
+      });
+      confetti({
+        particleCount: 3,
+        angle: 120,
+        spread: 55,
+        origin: { x: 1 },
+        colors: colors,
+        gravity: 0.8,
+        scalar: 0.8,
+        ticks: 200
+      });
+
+      if (Date.now() < end) {
+        requestAnimationFrame(frame);
+      }
+    }());
+  }
+};
