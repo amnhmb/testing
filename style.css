@@ -305,13 +305,13 @@ body {
 .corner-tl {
   top: -16px;
   left: -16px;
-  background-image: url('../assets/songket/border_upper_left.webp');
+  background-image: url('./assets/songket/border_upper_left.webp');
   background-position: top left;
 }
 .corner-br {
   bottom: -16px;
   right: -16px;
-  background-image: url('../assets/songket/border_lower_right.webp');
+  background-image: url('./assets/songket/border_lower_right.webp');
   background-position: bottom right;
 }
 .close-menu-btn {
@@ -416,7 +416,7 @@ html {
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 .kain-texture {
-  background-image: url('../assets/songket/kain.webp');
+  background-image: url('./assets/songket/kain.webp');
   background-size: cover;
   background-position: center;
   background-blend-mode: multiply;
