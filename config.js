@@ -18,7 +18,7 @@ const clientConfig = {
     warnaTextMuted: "#94A3B8",     // --text-muted (Teks kelabu/pudar)
     warnaBorder: "rgba(226, 232, 240, 0.15)", // --border
     fontUtama: "'Inter', sans-serif",
-    fontTajuk: "'Playfair Display', serif"
+    fontTajuk: "'Lora', serif"
   },
 
   // 2. MAKLUMAT PENGANTIN & TEKS
