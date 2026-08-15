@@ -128,7 +128,7 @@ body {
 }
 
 .ampersand {
-  color: var(--accent-contrast);
+  color: var(--ampersand);
   font-size: 1.2em;
   font-style: italic;
   font-family: 'Lora', serif;
@@ -1083,7 +1083,7 @@ html {
   position: relative;
   width: 320px;
   height: 220px;
-  background-color: #eaddc7;
+  background-color: var(--envelope);
   border-radius: 6px;
   box-shadow: 0 15px 35px rgba(0,0,0,0.25);
   display: flex;
@@ -1098,7 +1098,8 @@ html {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #d6c6ac;
+  background-color: var(--envelope);
+  filter: brightness(0.9);
   background-image: url('./assets/bunga_tanjung_design/motif_bunga_tanjung.webp');
   background-size: 50%;
   background-position: center;
@@ -1129,7 +1130,8 @@ html {
 .flap {
   width: 100%;
   height: 100%;
-  background-color: #f7eedf; /* Light ivory paper */
+  background-color: var(--envelope);
+  filter: brightness(1.02);
   /* Removed SVG noise filter for mobile performance */
 }
 
@@ -1138,7 +1140,8 @@ html {
 }
 .flap-left {
   clip-path: polygon(-5% -5%, 52% 51%, -5% 105%);
-  background-color: #f0e6d3;
+  background-color: var(--envelope);
+  filter: brightness(0.98);
 }
 
 .flap-right-wrapper {
@@ -1146,7 +1149,8 @@ html {
 }
 .flap-right {
   clip-path: polygon(105% -5%, 48% 51%, 105% 105%);
-  background-color: #ece1cd;
+  background-color: var(--envelope);
+  filter: brightness(0.95);
 }
 
 .flap-bottom-wrapper {
@@ -1270,33 +1274,17 @@ html {
   letter-spacing: 2px;
   text-transform: uppercase;
   cursor: pointer;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-.btn-elegant::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: var(--accent);
-  z-index: -1;
-  transform: scaleY(0);
-  transform-origin: bottom;
-  transition: transform 0.4s ease;
-}
+
 
 .btn-elegant:hover {
+  background-color: var(--accent);
   color: var(--bg);
-  border-color: var(--accent);
 }
 
-.btn-elegant:hover::before {
-  transform: scaleY(1);
-}
+
 
 /* Toast Notification */
 .toast-notification {
@@ -1465,33 +1453,17 @@ body.no-scroll {
   letter-spacing: 2px;
   text-transform: uppercase;
   cursor: pointer;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-.btn-elegant::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: var(--accent);
-  z-index: -1;
-  transform: scaleY(0);
-  transform-origin: bottom;
-  transition: transform 0.4s ease;
-}
+
 
 .btn-elegant:hover {
+  background-color: var(--accent);
   color: var(--bg);
-  border-color: var(--accent);
 }
 
-.btn-elegant:hover::before {
-  transform: scaleY(1);
-}
+
 
 /* Toast Notification */
 .toast-notification {
