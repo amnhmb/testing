@@ -16,15 +16,15 @@
 
 :root {
   /* ---- Palette (contoh — boleh tukar) ---- */
-  --bg: #F4E9D8;
-  --surface: #FAF7F0;
-  --text: #281C16;
-  --text-muted: #6B5A3F;
-  --accent: #7A1F2B;
-  --accent-strong: #9C2B2B;
-  --accent-contrast: #F2C230;
-  --border: #C9A227;
-  --border-soft: #D2C3AA;
+  --bg: #10172B;
+  --surface: #1E293B;
+  --text: #F8FAFC;
+  --text-muted: #CBD5E1;
+  --accent: #F8FAFC;
+  --accent-strong: #E2E8F0;
+  --accent-contrast: #10172B;
+  --border: rgba(255, 255, 255, 0.3);
+  --border-soft: rgba(255, 255, 255, 0.1);
 
   /* ---- Spacing scale ---- */
   --space-1: 4px;
@@ -36,13 +36,13 @@
   --space-7: 48px;
   --space-8: 64px;
 
-  --img-corner-tl: url("../assets/songket/border_upper_left.webp");
-  --img-corner-br: url("../assets/songket/border_lower_right.webp");
-  --img-bg-pattern: url("../assets/songket/badan_kain.webp");
-  --img-strip: url("../assets/songket/tali_air.webp");
-  --img-crown: url("../assets/songket/crown.webp");
-  --img-divider: url("../assets/songket/divider.webp");
-  --img-icon: url("../assets/songket/set_icon.webp");
+  --img-corner-tl: url("../assets/bunga_tanjung_design/border_upper_left_bunga_tanjung.webp?v=3");
+  --img-corner-br: url("../assets/bunga_tanjung_design/border_lower_right_bunga_tanjung.webp?v=3");
+  --img-bg-pattern: url("../assets/bunga_tanjung_design/badan_kain_bunga_tanjung.webp?v=2");
+  --img-strip: url("../assets/bunga_tanjung_design/tali_air_bunga_tanjung.webp?v=2");
+  --img-crown: url("../assets/bunga_tanjung_design/crown_bunga_tanjung.webp?v=3");
+  --img-divider: url("../assets/bunga_tanjung_design/divider_bunga_tanjung.webp?v=2");
+  --img-icon: url("../assets/bunga_tanjung_design/icon_bunga_tanjung.webp?v=3");
 }
 
 /* ============================================================
@@ -113,7 +113,7 @@ button:focus-visible, a:focus-visible, input:focus-visible {
   min-height: 48px;                 /* touch target */
   padding: 14px 30px;
   background: var(--accent);
-  color: var(--accent-contrast);
+  color: var(--bg);
   font-size: 16px;
   font-weight: 600;
   letter-spacing: 1.5px;
@@ -232,7 +232,7 @@ button:focus-visible, a:focus-visible, input:focus-visible {
   padding: 14px 16px;
   font-size: 16px;                  /* elak auto-zoom iOS */
   background: #fff;
-  color: var(--text);
+  color: #1E293B; /* Tukar dark color sebab background putih */
   border: 1px solid var(--border-soft);
   border-radius: 6px;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
@@ -251,8 +251,8 @@ button:focus-visible, a:focus-visible, input:focus-visible {
 .divider-songket {
   display: block;
   width: 100%;
-  max-width: 320px;
-  height: 48px;
+  max-width: 288px;
+  height: 43px;
   margin: var(--space-6) auto;
   background-image: var(--img-divider);
   background-size: contain;
