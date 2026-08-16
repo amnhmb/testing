@@ -11,9 +11,9 @@ const clientConfig = {
     warnaSampul: "#f7eedf",        // --envelope (Warna kertas sampul surat)
     warnaWax: "#8a131b",           // --wax (Warna cop lilin / wax seal)
     warnaAccent: "#E2E8F0",        // --accent (Warna highlight teks seperti nama)
-    warnaAset: "#D4AF37",          // --asset (Warna untuk corak, divider, mask)
+    warnaAset: "#E2E8F0",          // --asset (Warna untuk corak, divider, mask)
     warnaAmpersand: "#94A3B8",     // --ampersand (Warna khas untuk simbol '&')
-    warnaBayang: "#D97706",        // --shadow (Warna bayang-bayang / drop-shadow teks)
+    warnaBayang: "rgba(0, 0, 0, 0.4)",        // --shadow (Warna bayang-bayang / drop-shadow teks)
     warnaText: "#F1F5F9",          // --text (Teks biasa)
     warnaTextMuted: "#94A3B8",     // --text-muted (Teks kelabu/pudar)
     warnaBorder: "rgba(226, 232, 240, 0.15)", // --border
@@ -71,14 +71,14 @@ const clientConfig = {
   // 7. HUBUNGI KAMI (Array)
   hubungi: [
     { 
-      nama: "Bapa Pengantin", 
-      hubungan: "Othman Bin Ali", 
+      nama: "Othman Bin Ali", 
+      hubungan: "Bapa Pengantin", 
       panggilanBiasa: "tel:+60123456789", 
       whatsapp: "https://wa.me/60123456789" 
     },
     { 
-      nama: "Ibu Pengantin", 
-      hubungan: "Siti Sarah", 
+      nama: "Siti Sarah", 
+      hubungan: "Ibu Pengantin", 
       panggilanBiasa: "tel:+60198765432", 
       whatsapp: "https://wa.me/60198765432" 
     }

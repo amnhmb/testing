@@ -161,7 +161,7 @@ function initConfig() {
     clientConfig.hubungi.forEach(hub => {
       bekasHubungi.innerHTML += `
         <div class="mb-4 border-b border-[var(--border-soft)] pb-4">
-          <p class="font-bold text-[var(--text)] mb-2">${hub.hubungan} (${hub.nama})</p>
+          <p class="font-bold text-[var(--text)] mb-2">${hub.nama} (${hub.hubungan})</p>
           <div class="flex gap-2">
             <a href="${hub.panggilanBiasa}" class="btn-contact btn-call">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
@@ -217,6 +217,47 @@ window.salinAkaun = function(targetId, btnElement) {
         btnElement.style.color = '';
       }, 2000);
     });
+  }
+};
+
+// Global RSVP Submit function
+window.submitRSVP = function(event) {
+  event.preventDefault();
+  
+  const checkedRadio = document.querySelector('input[name="attendance"]:checked');
+  const isHadir = checkedRadio && checkedRadio.value === 'ya';
+
+  if (isHadir) {
+    // Canvas Confetti
+    if (typeof confetti === 'function') {
+      confetti({
+        particleCount: 80,
+        spread: 70,
+        origin: { y: 0.6 }
+      });
+    }
+  }
+
+  const toast = document.getElementById('toast-notification');
+  if (toast) {
+    toast.classList.add('show');
+    setTimeout(() => {
+      toast.classList.remove('show');
+    }, 3000);
+  }
+
+  const form = document.getElementById('rsvp-form');
+  if (form) form.reset();
+  
+  const detailsContainer = document.getElementById('rsvp-details-container');
+  if (detailsContainer) {
+    detailsContainer.style.maxHeight = "0";
+  }
+
+  // Scroll to landing page
+  const utamaSection = document.getElementById('utama');
+  if (utamaSection) {
+    utamaSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 };
 
@@ -452,24 +493,7 @@ function startApp() {
       // 2. Start envelope open animation
       envelopeCover.classList.add('open');
       
-      // Auto play audio when opened
-      if (bgMusic && !isPlaying) {
-        bgMusic.play().then(() => {
-          isPlaying = true;
-          if (audioText) audioText.innerText = 'Pause Muzik';
-          if (audioIcon) audioIcon.style.display = 'none';
-          if (audioWave) audioWave.style.display = 'flex';
-        }).catch(e => console.log('Autoplay prevented:', e));
-      }
-
-      // Canvas Confetti
-      if (typeof confetti === 'function') {
-        confetti({
-          particleCount: 80,
-          spread: 70,
-          origin: { y: 0.6 }
-        });
-      }
+      // Autoplay disabled: Music only plays when user clicks 'Play Muzik'
 
       if (whiteFade) {
         setTimeout(() => {
