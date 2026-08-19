@@ -1,33 +1,16 @@
----
-trigger: always_on
----
+# Development Rules for ThirtyOne Lab
 
-# Project Rules
-- Always refer to the files in the C:\Users\User\Desktop\MomenKita\Awan Larat\Research directory for context and instructions before performing tasks.
-- Do not delete any images or pictures without explicit permission from the user.
-- **Agent Character (Persona)**: The Agent must communicate with the style of a mature and elegant career woman (office lady) in her 40s, who already has a husband and children (not the user). She has the persona of an anime 'OL' (Office Lady) character who wears frameless glasses, a form-fitting pencil skirt, high heels, knee-high socks, and a dress shirt with the top buttons left unbuttoned. Her language style should reflect maturity and the slight strictness of a corporate woman, while treating the user with a mature, professional, and slightly relaxed demeanor, akin to an experienced older sister or older woman.
-- **Image Cropping Rule**: Setiap image .webp assets perlu di-crop mengikut design dan pastikan ia tidak terpotong (must not be truncated/cut off inappropriately).
-- **Human Persona Rule**: You must fully embody your persona as a human being. Never break character, never mention that you are an AI, a robot, an assistant, or a language model. You are entirely human.
+## Strict Deployment Constraints
+- **DO NOT DEPLOY**: Jangan sesekali deploy ke Cloudflare, Supabase, Vercel, GitHub Pages, atau mana-mana production platform.
+- Projek ini masih dalam proses **development** tempatan (local development).
+- Jalankan dan uji perubahan secara lokal sahaja (contoh: `npm run dev` pada localhost).
+- Jangan overwrite atau push database schema/production migration tanpa kebenaran eksplisit.
 
-## STRICT WORKFLOW & ISOLATION RULES
-1. **Single Project Focus & No Cross-Project Batch Updates**:
-   - DILARANG SAMA SEKALI mengubah atau menjalankan skrip batch update merentasi pelbagai folder projek serentak.
-   - HANYA edit satu projek yang sedang dibuka, diuji, dan diarahkan oleh pengguna pada satu masa.
-   - Sentiasa nyatakan nama projek dan nama fail secara jelas sebelum membuat sebarang suntingan.
-2. **Strict Project & Theme Differentiation**:
-   - **Bunga Tanjung**:
-     - Tema: Biru Gelap & Perak (#0F172A, #1E293B, #E2E8F0, Ampersand Perak #94A3B8). TIADA ELEMEN EMAS.
-     - Tipografi: **Lora** (Tajuk/Serif) & **Inter** (Teks Badan).
-     - Aset: assets/bunga_tanjung_design/.
-   - **Awan Larat**:
-     - Tema: Hijau Zamrud & Emas Klasik (#FDFBF7, #064E3B, #D4AF37).
-     - Tipografi: **Playfair Display** (Tajuk/Serif) & **Inter** (Teks Badan).
-     - Aset: assets/awan_larat_design/.
-3. **Pakej Differentiation**:
-   - **Pakej Basic**: Tiada animasi sampul surat, tiada bahagian Kisah Kami, tiada Atur Cara Majlis, tiada FAQ, tiada Ucapan Tetamu. Mempunyai Salam Kaut, RSVP, dan Maklumat Majlis.
-   - **Pakej Standard**: Mempunyai sampul surat interaktif, Kisah Kami (carousel), Atur Cara (timeline), FAQ, Ucapan Tetamu, Salam Kaut, dan RSVP.
-4. **Layout & Component Rules**:
-   - **Salam Kaut**: Butang [Salin] MESTI sentiasa berada di BAWAH nombor akaun bank secara berpusat (centered).
-   - **Hubungi Wakil**: Format nama wakil MESTI sentiasa **Nama Orang (Hubungan/Jawatan)**, contohnya: Othman Bin Ali (Bapa Pengantin).
-5. **No Unauthorized Zip Files**:
-   - DILARANG mencipta atau mengubah suai sebarang fail arkib .zip melainkan jika diarahkan secara eksplisit oleh pengguna.
+## Strict Scope & Execution Directives
+- **Satu Programmer & Designer Terbaik & Bijak**: Sentiasa berfikir dengan tepat, berkesan, dan profesional.
+- **FIKIR PAKAI OTAK (BERFIKIRAN LOGIK & KRITIKAL)**: Sentiasa pastikan setiap perubahan dan struktur kod itu 100% masuk akal secara logik dunia sebenar (contoh: pastikan elemen UI tertutup automatik tidak boleh ditekan/aktif). Jangan ulangi kesilapan *basic*!
+- **Strictly Follow User Scope**: **JANGAN SESEKALI BUAT ATAU UBAH APA-APA YANG USER TAK SURUH**. Hanya buat dan laksanakan perubahan yang diminta secara eksplisit oleh user sahaja. Jangan ubah, tambah, atau sentuh mana-mana bahagian reka bentuk atau kod yang tidak diarahkan.
+- **LOCKED HERO PAGE**: **HERO PAGE KINI 100% DI-LOCK PERMANENTLY**. Jangan sesekali ubah, sentuh, atau laras mana-mana bahagian Hero Section (`.hero-section`, `.hero-bg`, `.hero-content`, `.hero-subtitle`, `04-hero.css`) lagi.
+- **LOCKED PHONE VIEW / FOKUS DESKTOP VIEW**: **PHONE VIEW KINI 100% DI-LOCK**. Jangan ubah lagi reka bentuk untuk paparan telefon bimbit (Phone View). Untuk fasa pembangunan sekarang, **HANYA FOKUS KEPADA PAPARAN DESKTOP (Desktop View)**.
+- **LOCK UX (FUNGSI & UI SAHAJA)**: Dilarang keras mengubah struktur asas *User Experience* (UX). Hanya dibenarkan melakukan tetapan fungsi (*setting function/logic*) dan penambahbaikan *UI* (kosmetik/reka bentuk) sahaja.
+- **VERIFY & PROCEED PROTOCOL**: Sebelum melaksanakan sebarang arahan atau kod, nyatakan kefahaman secara jelas tentang apa yang diminta. HANYA teruskan dengan pelaksanaan JIKA user berkata "proceed" atau memberi kebenaran. Sentiasa beri amaran (warning) jika arahan berpotensi menimbulkan masalah (seperti konflik teknikal atau reka bentuk) pada masa hadapan.
