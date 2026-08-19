@@ -23,8 +23,8 @@ export function getBasePath() {
     var path = window.location.pathname;
     // Find the repo name segment (second slash)
     var parts = path.split('/').filter(Boolean);
-    if (parts.length > 0 && parts[0] === 'thirtyonelab.catalog') {
-        return '/thirtyonelab.catalog/';
+    if (parts.length > 0 && (parts[0] === 'thirtyonelab.catalog' || parts[0] === 'testing')) {
+        return '/' + parts[0] + '/';
     }
     return '/';
 }
