@@ -6,8 +6,10 @@
        1. METADATA & SEO ASAS
        ========================================== -->
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>ThirtyOne Lab Official</title>
+    <meta name="theme-color" content="#BA122B">
+    <link rel="apple-touch-icon" href="/pwa-192x192.png">
     <meta name="description"
         content="ThirtyOne Lab Official - Kedai cetak baju custom apparel specialist di Kajang, Selangor.">
     <meta name="keywords"
@@ -58,12 +60,15 @@
        3. FONTS & EXTERNAL STYLESHEET
        ========================================== -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <script type="module" crossorigin src="/thirtyonelab.catalog/assets/main-STjb9H0y.js"></script>
-  <link rel="modulepreload" crossorigin href="/thirtyonelab.catalog/assets/catalogEvent-CW0LBB-z.js">
-  <link rel="stylesheet" crossorigin href="/thirtyonelab.catalog/assets/main-C36J8k50.css">
-</head>
+  <script type="module" crossorigin src="/testing/assets/main-BylXqZK8.js"></script>
+  <link rel="modulepreload" crossorigin href="/testing/assets/modulepreload-polyfill-Dezn_h7o.js">
+  <link rel="modulepreload" crossorigin href="/testing/assets/translations-CG-oXsJR.js">
+  <link rel="modulepreload" crossorigin href="/testing/assets/catalogEvent-CKjKjmZY.js">
+  <link rel="stylesheet" crossorigin href="/testing/assets/translations-BwTigiJF.css">
+  <link rel="stylesheet" crossorigin href="/testing/assets/main-1zKcSmyV.css">
+<link rel="manifest" href="/testing/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/testing/registerSW.js"></script></head>
 
 <body>
     <div id="appContainer">
@@ -73,33 +78,93 @@
        ========================================== -->
     <header class="sticky-header">
         <div class="header-container">
-            <a href="#home" class="logo-link">
+            <div class="header-left">
+            <button class="hamburger-btn" id="hamburgerBtn" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            <a href="index.html" class="logo-link">
                 <img src="Image/Favicon/Logo Favicon.webp" alt="ThirtyOne Lab Logo" class="brand-logo">
                 <span class="brand-name"><span class="brand-thirtyone">THIRTYONE</span><span class="brand-lab">LAB</span><sup class="brand-registered">&reg;</sup></span>
             </a>
+            </div>
             <nav class="nav-menu">
-                <a href="#home" class="nav-item" data-i18n="nav_home">Home</a>
-                <a href="#shop" class="nav-item" data-i18n="nav_catalog">Catalog</a>
-                <a href="#customize" class="nav-item" data-i18n="nav_customize">Customize</a>
-                <a href="#about" class="nav-item" data-i18n="nav_about">About</a>
-                <a href="#contact" class="nav-item" data-i18n="nav_contact">Contact</a>
+                <a href="index.html#home" class="nav-item active" data-i18n="nav_home">Home</a>
+                <a href="about.html" class="nav-item" data-i18n="nav_about">About</a>
+                <a href="contact.html" class="nav-item" data-i18n="nav_contact">Contact</a>
             </nav>
-            <div class="lang-switcher" title="Choose Language / Pilih Bahasa">
-                <button class="lang-btn active" id="langBtnEN" onclick="setLanguage('en')">EN</button>
-                <button class="lang-btn" id="langBtnMS" onclick="setLanguage('ms')">BM</button>
+            <div class="header-actions-mobile">
+                <div class="lang-switcher" title="Choose Language / Pilih Bahasa">
+                    <button class="lang-btn active" id="langBtnEN" onclick="setLanguage('en')">EN</button>
+                    <button class="lang-btn" id="langBtnMS" onclick="setLanguage('ms')">BM</button>
+                </div>
             </div>
         </div>
     </header>
+
+    <!-- Mobile Navigation Overlay -->
+    <div class="mobile-nav-overlay" id="mobileNavOverlay">
+        <nav class="mobile-nav-menu">
+            <a href="index.html#appContainer" class="mobile-nav-item" onclick="toggleMobileMenu()">Home</a>
+            <a href="about.html" class="mobile-nav-item" data-i18n="nav_about">About</a>
+            <a href="contact.html" class="mobile-nav-item" data-i18n="nav_contact">Contact</a>
+            <div class="mobile-collab-section">
+                <span class="mobile-collab-title" data-i18n="collab_title">Collaboration</span>
+                <div class="mobile-collab-logos">
+                    <img src="Image/Collaboration%20With%20(Customer)/AIA.webp" alt="AIA">
+                    <img src="Image/Collaboration%20With%20(Customer)/Air%20Asia.webp" alt="Air Asia">
+                    <img src="Image/Collaboration%20With%20(Customer)/Der%20Cabin.webp" alt="Der Cabin">
+                    <img src="Image/Collaboration%20With%20(Customer)/KKM.webp" alt="KKM">
+                    <img src="Image/Collaboration%20With%20(Customer)/Politeknik%20Nilai.webp" alt="Politeknik Nilai">
+                    <img src="Image/Collaboration%20With%20(Customer)/Setapak%20City.webp" alt="Setapak City">
+                    <img src="Image/Collaboration%20With%20(Customer)/Zero%20FC.webp" alt="Zero FC">
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    
 
     <!-- ==========================================
        5. HERO LIFESTYLE SECTION
        ========================================== -->
     <section class="hero-section" id="home">
-        <img class="hero-bg" src="Image/Hero Page/Hero Page Merdeka.webp" alt="ThirtyOne Lab Boutique">
+        <img class="hero-bg" src="Image/Hero Page/Hero Page Merdeka.webp" alt="ThirtyOne Lab Official">
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <span class="hero-subtitle" data-i18n="hero_subtitle">ThirtyOne Lab Boutique</span>
+            <span class="hero-subtitle" data-i18n="hero_subtitle">ThirtyOne Lab Official</span>
             <h1 class="hero-title" data-i18n="hero_title">Custom Jerseys, Elevated</h1>
+        </div>
+    </section>
+
+    <!-- ==========================================
+       6. DESKTOP COLLABORATION SECTION
+       ========================================== -->
+    <section class="desktop-collaboration-section" id="collaboration">
+        <div class="desktop-collab-container">
+            <h2 class="desktop-collab-title" data-i18n="nav_collaboration">Collaboration</h2>
+            <p class="desktop-collab-subtitle" data-i18n="collab_subtitle">Trusted by Top Brands & Institutions</p>
+        </div>
+        <div class="desktop-collab-marquee">
+            <div class="desktop-collab-track">
+                <!-- Set 1 -->
+                <img class="desktop-collab-logo" src="Image/Collaboration%20With%20(Customer)/AIA.webp" alt="AIA">
+                <img class="desktop-collab-logo" src="Image/Collaboration%20With%20(Customer)/Air%20Asia.webp" alt="Air Asia">
+                <img class="desktop-collab-logo" src="Image/Collaboration%20With%20(Customer)/Der%20Cabin.webp" alt="Der Cabin">
+                <img class="desktop-collab-logo" src="Image/Collaboration%20With%20(Customer)/KKM.webp" alt="KKM">
+                <img class="desktop-collab-logo" src="Image/Collaboration%20With%20(Customer)/Politeknik%20Nilai.webp" alt="Politeknik Nilai">
+                <img class="desktop-collab-logo" src="Image/Collaboration%20With%20(Customer)/Setapak%20City.webp" alt="Setapak City">
+                <img class="desktop-collab-logo" src="Image/Collaboration%20With%20(Customer)/Zero%20FC.webp" alt="Zero FC">
+                <!-- Set 2 (Duplicated for seamless loop) -->
+                <img class="desktop-collab-logo" src="Image/Collaboration%20With%20(Customer)/AIA.webp" alt="AIA">
+                <img class="desktop-collab-logo" src="Image/Collaboration%20With%20(Customer)/Air%20Asia.webp" alt="Air Asia">
+                <img class="desktop-collab-logo" src="Image/Collaboration%20With%20(Customer)/Der%20Cabin.webp" alt="Der Cabin">
+                <img class="desktop-collab-logo" src="Image/Collaboration%20With%20(Customer)/KKM.webp" alt="KKM">
+                <img class="desktop-collab-logo" src="Image/Collaboration%20With%20(Customer)/Politeknik%20Nilai.webp" alt="Politeknik Nilai">
+                <img class="desktop-collab-logo" src="Image/Collaboration%20With%20(Customer)/Setapak%20City.webp" alt="Setapak City">
+                <img class="desktop-collab-logo" src="Image/Collaboration%20With%20(Customer)/Zero%20FC.webp" alt="Zero FC">
+            </div>
         </div>
     </section>
 
@@ -107,6 +172,14 @@
        5A. VERSION 3 LANDING PAGE HUB (PHONE-FIRST)
        ========================================== -->
     <section class="v3-hub-section" id="v3Hub">
+        <!-- Social Media Icons (Moved here) -->
+        <div class="v3-hub-socials">
+            <a href="https://www.tiktok.com/@thirtyonelabofficial" target="_blank" class="v3-social-btn"><img src="Image/Favicon/Favicon Tiktok.webp" alt="TikTok"></a>
+            <a href="https://www.instagram.com/thirtyonelab" target="_blank" class="v3-social-btn"><img src="Image/Favicon/Favicon IG.webp" alt="Instagram"></a>
+            <a href="https://www.facebook.com/thirtyonelab" target="_blank" class="v3-social-btn"><img src="Image/Favicon/Favicon FB.webp" alt="Facebook"></a>
+            <a href="https://wa.me/601125614436" target="_blank" class="v3-social-btn"><img src="Image/Favicon/Favicon WhatsApp.webp" alt="WhatsApp"></a>
+        </div>
+
         <!-- Primary Action Cards -->
         <div class="v3-primary-group">
             <button class="v3-btn-primary-hub" onclick="openV3Modal('collection')" id="v3BtnCollection" aria-label="Open Collection Design">
@@ -114,7 +187,7 @@
                     <span class="v3-btn-hub-title" data-i18n="v3_hub_collection">Collection Design</span>
                     <span class="v3-btn-hub-desc" data-i18n="v3_modal_collection_subtitle">Explore our curated catalog of premium designs</span>
                 </div>
-                <div class="v3-btn-hub-arrow">→</div>
+                <div class="v3-btn-hub-arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></div>
             </button>
 
             <button class="v3-btn-primary-hub event-edition" onclick="openV3Modal('event')" id="v3BtnEvent" aria-label="Open Event Edition">
@@ -122,7 +195,7 @@
                     <span class="v3-btn-hub-title" data-i18n="v3_hub_event">Event Edition</span>
                     <span class="v3-btn-hub-desc" data-i18n="v3_modal_event_subtitle">Tournament and special edition jersey series</span>
                 </div>
-                <div class="v3-btn-hub-arrow">→</div>
+                <div class="v3-btn-hub-arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></div>
             </button>
         </div>
 
@@ -153,107 +226,15 @@
         </div>
     </section>
 
-    <!-- Hidden / Offscreen dynamic data holder for Supabase & catalog rendering -->
-    <div id="catalogGrid" style="display: none;"></div>
-
-    <!-- ==========================================
-       6. COLLABORATION LOGOS SECTION
-       ========================================== -->
-    <section class="collab-section">
-        <div class="container collab-container">
-            <span class="collab-title" data-i18n="collab_title">Collaboration With</span>
-            <div class="collab-logos-row">
-                <div class="collab-logo-item"><img src="Image/Collaboration%20With%20(Customer)/AIA.webp" alt="AIA"></div>
-                <div class="collab-logo-item"><img src="Image/Collaboration%20With%20(Customer)/Air%20Asia.webp" alt="Air Asia"></div>
-                <div class="collab-logo-item"><img src="Image/Collaboration%20With%20(Customer)/Der%20Cabin.webp" alt="Der Cabin"></div>
-                <div class="collab-logo-item"><img src="Image/Collaboration%20With%20(Customer)/KKM.webp" alt="KKM"></div>
-                <div class="collab-logo-item"><img src="Image/Collaboration%20With%20(Customer)/Politeknik%20Nilai.webp" alt="Politeknik Nilai"></div>
-                <div class="collab-logo-item"><img src="Image/Collaboration%20With%20(Customer)/Setapak%20City.webp" alt="Setapak City"></div>
-                <div class="collab-logo-item"><img src="Image/Collaboration%20With%20(Customer)/Zero%20FC.webp" alt="Zero FC"></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ==========================================
-       7. BOUTIQUE SECTIONS (ABOUT & CONTACT)
-       ========================================== -->
     
-    <!-- About Section -->
-    <section class="boutique-section about-section" id="about">
-        <div class="about-container">
-            <div class="about-text-content">
-                <span class="section-tag" data-i18n="about_tag">Since 2023</span>
-                <h2 class="section-title" data-i18n="about_title">The Art of Custom Apparel</h2>
-                <p data-i18n="about_desc1">ThirtyOne Lab is a custom apparel shop in Kajang, Selangor. We combine high-performance sports fabrics with clean, minimalist designs to create custom teamwear, uniforms, and streetwear.</p>
-                <p data-i18n="about_desc2">We design every layout, stitch pattern, and print option with care. Good apparel does more than keep you covered. It gives you the confidence of wearing gear that represents your team.</p>
-            </div>
-            <div class="about-image-collage">
-                <img src="Image/Favicon/Logo Header.webp" alt="ThirtyOne Lab Artistry" class="about-main-img">
-                <div class="about-logo-text">
-                    <span class="brand-name"><span class="brand-thirtyone">THIRTYONE</span><span class="brand-lab">LAB</span><sup class="brand-registered">&reg;</sup></span>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Contact Showroom Section -->
-    <section class="boutique-section contact-section" id="contact">
-        <div class="contact-container">
-            <div class="contact-card">
-                <span class="section-tag" data-i18n="contact_tag">Showroom Visit</span>
-                <h2 class="section-title" data-i18n="contact_title">Visit Our Shop</h2>
-                <p class="contact-intro" data-i18n="contact_intro">Drop by our showroom if you want to inspect our fabrics in person, discuss a logo design, or get help with sizing. We will help you get your order ready.</p>
-                
-                <div class="contact-ssm" style="margin-top: -25px; margin-bottom: 35px; font-size: 0.9rem; font-weight: 600; color: var(--text-dark); letter-spacing: 0.5px; font-family: var(--font-display);">
-                    <span class="ssm-name">THIRTYONE LAB LEGACY</span> <span class="ssm-number-parent">(003761416-T)</span>
-                </div>
+    
 
-                <div class="contact-details">
-                    <div class="contact-item">
-                        <div class="contact-icon-box">
-                            <img src="Image/Favicon/Favicon Address.webp" alt="Address" class="contact-icon">
-                        </div>
-                        <div class="contact-info-text">
-                            <h3 data-i18n="contact_location_title">Shop Location</h3>
-                            <a href="https://maps.app.goo.gl/L6R3bP8RUKCmdaNK9" target="_blank">26A, Jalan 1, Taman Bukit Cantik, 43000 Kajang, Selangor, Malaysia</a>
-                        </div>
-                    </div>
+    
+    
+    
 
-                    <div class="contact-item">
-                        <div class="contact-icon-box">
-                            <img src="Image/Favicon/Favicon Email.webp" alt="Email" class="contact-icon">
-                        </div>
-                        <div class="contact-info-text">
-                            <h3 data-i18n="contact_email_title">Email Queries</h3>
-                            <span>thirtyonelabofficial@gmail.com</span>
-                        </div>
-                    </div>
-
-                    <div class="contact-item">
-                        <div class="contact-icon-box">
-                            <img src="Image/Favicon/Favicon WhatsApp.webp" alt="WhatsApp" class="contact-icon">
-                        </div>
-                        <div class="contact-info-text">
-                            <h3 data-i18n="contact_wa_title">WhatsApp Shop Support</h3>
-                            <a href="https://wa.me/601125614436" target="_blank">+6011 2561 4436</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="contact-social-row">
-                    <a href="https://www.tiktok.com/@thirtyonelabofficial" target="_blank" class="social-link-btn">
-                        <img src="Image/Favicon/Favicon Tiktok.webp" alt="TikTok" class="social-icon"> TikTok
-                    </a>
-                    <a href="https://www.instagram.com/thirtyonelab" target="_blank" class="social-link-btn">
-                        <img src="Image/Favicon/Favicon IG.webp" alt="Instagram" class="social-icon"> Instagram
-                    </a>
-                    <a href="https://www.facebook.com/thirtyonelab" target="_blank" class="social-link-btn">
-                        <img src="Image/Favicon/Favicon FB.webp" alt="Facebook" class="social-icon"> Facebook
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
+    
 
     <!-- ==========================================
        8. VERSION 3 DEDICATED MODALS (7 MODALS)
@@ -272,8 +253,8 @@
             <div class="v3-modal-body">
                 <!-- Year Switcher Tabs (No Filter Chips) -->
                 <div class="v3-tab-container">
-                    <button class="v3-tab-btn active" id="v3Tab2026" onclick="switchV3CollectionYear('2026')">2026 Edition</button>
                     <button class="v3-tab-btn" id="v3Tab2025" onclick="switchV3CollectionYear('2025')">2025 Edition</button>
+                    <button class="v3-tab-btn active" id="v3Tab2026" onclick="switchV3CollectionYear('2026')">2026 Edition</button>
                 </div>
 
                 <!-- 2-Column Product Grid -->
@@ -378,7 +359,7 @@
             <div class="v3-modal-header">
                 <div class="v3-modal-header-info">
                     <h2 class="v3-modal-title" data-i18n="v3_modal_sizechart_title">Size Charts</h2>
-                    <span class="v3-modal-subtitle" data-i18n="v3_modal_sizechart_subtitle">Official measurement guide (Inches & CM)</span>
+                    <span class="v3-modal-subtitle" data-i18n="v3_modal_sizechart_subtitle">Official measurement guide (Inches)</span>
                 </div>
                 <button class="v3-modal-close-btn" onclick="closeV3Modal('sizechart')" aria-label="Close">✕</button>
             </div>
@@ -396,54 +377,69 @@
     </div>
 
     <!-- ==========================================
-       9. UPGRADED LIGHTBOX MODULE (POP-UP PREVIEW)
+       DESKTOP SIDE PANEL (Desktop only — replaces modal overlay)
        ========================================== -->
-    <div class="lightbox-overlay" id="lightboxOverlay">
-        <button class="lightbox-nav prev" id="lightboxPrev" aria-label="Previous Image">
-            <svg viewBox="0 0 24 24">
-                <polyline points="15 18 9 12 15 6"></polyline>
-            </svg>
-        </button>
-
-        <div class="v3-lightbox-wrapper">
-            <div class="v3-lightbox-hint-outside" style="color: #FFFFFF !important; font-size: 0.78rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; text-align: center; margin-bottom: 8px;" data-i18n="v3_tap_to_close">Tekan mana-mana untuk close</div>
-            <div class="lightbox-content">
-                <img src="" alt="Preview Product" id="lightboxImg">
-
-            <!-- V3 Lightbox Action Section -->
-            <div class="v3-lightbox-details">
-                <!-- Multi-image dot indicator -->
-                <div class="v3-lightbox-dots" id="v3LightboxDots" style="display: none;"></div>
-
-                <!-- Design Reference Code -->
-                <div id="lightboxRefDisplay" class="lightbox-ref-display" style="margin-bottom: 2px;"></div>
-
-                <!-- 100% Customizable Illustration Notice Box -->
-                <div class="v3-illustration-disclaimer" id="lightboxDisclaimerBox">
-                    <div class="v3-disclaimer-header">
-                        <span data-i18n="v3_disclaimer_title">✦ 100% FULLY CUSTOMIZABLE</span>
-                    </div>
-                    <p class="v3-disclaimer-text" data-i18n="v3_disclaimer_desc">This image is for visual illustration. All elements (colors, logos, collar, sleeves, cutting & fabric) can be fully customized to your preferences.</p>
-                </div>
-
-                <!-- Stacked Action Buttons (Top: Copy Image, Bottom: WhatsApp) -->
-                <div class="v3-lightbox-btn-stack" id="lightboxBtnStack">
-                    <button id="btnCopyMockup" class="v3-btn-copy" onclick="copyCurrentMockupImage()">
-                        <span data-i18n="v3_btn_copy_image">📋 Copy Mockup Image</span>
-                    </button>
-                    <button id="btnWhatsAppDirect" class="v3-btn-wa" onclick="inquireCurrentMockupWhatsApp()">
-                        <span data-i18n="v3_btn_whatsapp_chat">💬 Inquire via WhatsApp</span>
-                    </button>
-                </div>
-            </div>
+    <div id="desktopSidePanel">
+        <div id="desktopSidePanelInner">
+            <!-- Modal content will be moved here by JS on desktop -->
         </div>
     </div>
 
-        <button class="lightbox-nav next" id="lightboxNext" aria-label="Next Image">
-            <svg viewBox="0 0 24 24">
-                <polyline points="9 18 15 12 9 6"></polyline>
-            </svg>
-        </button>
+    <!-- ==========================================
+       9. UPGRADED LIGHTBOX MODULE (POP-UP PREVIEW)
+       ========================================== -->
+    <div class="lightbox-overlay" id="lightboxOverlay">
+        <div style="display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 1100px;">
+            <div class="v3-lightbox-hint-outside" style="color: #FFFFFF !important; font-size: 0.78rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; text-align: center; margin-bottom: 10px;" data-i18n="v3_tap_to_close">Tekan mana-mana untuk close</div>
+
+            <div class="v3-lightbox-wrapper">
+                <!-- LEFT: Image -->
+                <div class="lightbox-content">
+                    <button class="lightbox-inner-nav prev" id="lightboxInnerPrev" onclick="switchV3LightboxSlide('prev')" aria-label="Previous Angle" style="display: none;">
+                        <svg viewBox="0 0 24 24">
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                    </button>
+                    <img src="" alt="Preview Product" id="lightboxImg">
+                    <button class="lightbox-inner-nav next" id="lightboxInnerNext" onclick="switchV3LightboxSlide('next')" aria-label="Next Angle" style="display: none;">
+                        <svg viewBox="0 0 24 24">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </button>
+                    <!-- Dot indicators remain with image on mobile -->
+                    <div class="v3-lightbox-dots" id="v3LightboxDots" style="display: none;"></div>
+                </div>
+
+                <!-- RIGHT: Actions (on desktop) / Below image (on mobile) -->
+                <div class="v3-lightbox-details">
+                    <!-- Design Reference Code / Title -->
+                    <div id="lightboxRefDisplay" class="lightbox-ref-display" style="margin-bottom: 2px;"></div>
+
+                    <!-- Custom HTML Container for Material/Placement details -->
+                    <div id="v3LightboxCustomContent" style="margin-top: 6px; width: 100%;"></div>
+
+                    <!-- 100% Customizable Illustration Notice Box -->
+                    <div class="v3-illustration-disclaimer" id="lightboxDisclaimerBox">
+                        <div class="v3-disclaimer-header">
+                            <span data-i18n="v3_disclaimer_title">✦ 100% FULLY CUSTOMIZABLE</span>
+                        </div>
+                        <p class="v3-disclaimer-text" data-i18n="v3_disclaimer_desc">This image is for visual illustration. All elements (colors, logos, collar, sleeves, cutting &amp; fabric) can be fully customized to your preferences.</p>
+                    </div>
+
+                    <!-- Stacked Action Buttons (Copy Image + WhatsApp) -->
+                    <div class="v3-lightbox-btn-stack" id="lightboxBtnStack">
+                        <button id="btnCopyMockup" class="v3-btn-copy" onclick="copyCurrentMockupImage()">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px;"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                            <span data-i18n="v3_btn_copy_image">Salin Gambar Mockup</span>
+                        </button>
+                        <button id="btnWhatsAppDirect" class="v3-btn-wa" onclick="inquireCurrentMockupWhatsApp()">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 6px;"><path d="M12.012 2c-5.506 0-9.989 4.478-9.989 9.984 0 1.764.459 3.486 1.332 5.006l-1.355 4.954 5.08-1.327c1.472.802 3.14 1.229 4.932 1.229 5.507 0 9.989-4.478 9.989-9.985 0-5.506-4.482-9.984-9.989-9.984zm5.795 14.193c-.244.688-1.427 1.319-1.96 1.36-.532.041-1.229.184-3.993-.902-3.342-1.312-5.46-4.757-5.626-4.978-.166-.222-1.355-1.802-1.355-3.439 0-1.638.858-2.443 1.163-2.776.305-.333.665-.416.887-.416.222 0 .443.003.637.012.205.01.48-.078.748.566.277.665.943 2.302 1.026 2.468.083.166.138.36.027.582-.111.222-.166.36-.333.555-.166.194-.349.434-.5.583-.166.166-.339.347-.146.679.194.333.861 1.42 1.849 2.299 1.27 1.131 2.342 1.482 2.675 1.648.333.166.527.139.721-.083.194-.222.832-.971 1.054-1.304.222-.333.443-.277.748-.166.305.111 1.939.915 2.272 1.082.333.166.555.25.637.388.083.138.083.799-.161 1.487z"/></svg>
+                            <span data-i18n="v3_btn_whatsapp_chat">Tanya via WhatsApp</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Toast Notification for Copy Alert -->
@@ -874,6 +870,10 @@
                             <button id="sendWhatsAppOwnBtn" class="lightbox-wa-btn" data-i18n="qb_send_whatsapp">Send to WhatsApp</button>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- ==========================================
        10. SITE FOOTER
        ========================================== -->
@@ -887,14 +887,37 @@
 
     <!-- All JS loaded via ES module imports from app_v2.js -->
 
-    <!-- Legacy Quote Modals & Tutorial Overlay kept inert and hidden -->
-    <div style="display: none !important;">
-        <div class="tut-backdrop" id="tutBackdrop"></div>
-        <div class="tut-info-box" id="tutInfoBox"><p id="tutInfoText"></p><button id="tutNextBtn"></button></div>
-        <div id="onboardingPopup"></div>
-    </div>
-    
-    </div>
+    <script>
+        function toggleMobileMenu() {
+            const btn = document.getElementById('hamburgerBtn');
+            const overlay = document.getElementById('mobileNavOverlay');
+            if(btn && overlay) {
+                btn.classList.toggle('open');
+                overlay.classList.toggle('active');
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            const btn = document.getElementById('hamburgerBtn');
+            if (btn) btn.addEventListener('click', toggleMobileMenu);
+        });
+    </script>
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

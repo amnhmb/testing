@@ -1,7 +1,36 @@
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
+import { VitePWA } from 'vite-plugin-pwa';
 
 export default defineConfig({
+  plugins: [
+    VitePWA({
+      registerType: 'autoUpdate',
+      injectRegister: 'auto',
+      manifest: {
+        name: 'ThirtyOne Lab Catalog',
+        short_name: 'ThirtyOneLab',
+        theme_color: '#BA122B',
+        background_color: '#ffffff',
+        display: 'standalone',
+        icons: [
+          {
+            src: 'pwa-192x192.png',
+            sizes: '192x192',
+            type: 'image/png'
+          },
+          {
+            src: 'pwa-512x512.png',
+            sizes: '512x512',
+            type: 'image/png'
+          }
+        ]
+      },
+      workbox: {
+        globPatterns: ['**/*.{js,css,html,ico,png,svg,webp}']
+      }
+    })
+  ],
   base: process.env.CF_PAGES ? '/' : '/testing/',
   root: 'src',
   envDir: '../',
