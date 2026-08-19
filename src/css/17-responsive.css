@@ -177,8 +177,6 @@
     /* Hero section */
     .hero-section {
         aspect-ratio: 16 / 9 !important;
-        height: auto;
-        min-height: unset;
         margin-bottom: 0px;
         align-items: center;
         padding-top: 0px;
