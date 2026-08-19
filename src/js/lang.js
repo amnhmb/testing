@@ -1,6 +1,17 @@
 import { i18nTranslations } from './translations.js';
 
-let currentLang = localStorage.getItem('thirtyone_lang') || 'en';
+function getDefaultLanguage() {
+    const saved = localStorage.getItem('thirtyone_lang');
+    if (saved) return saved;
+
+    const browserLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+    if (browserLang.startsWith('ms')) {
+        return 'ms';
+    }
+    return 'en';
+}
+
+let currentLang = getDefaultLanguage();
 
 window.setLanguage = function(lang) {
     if (!i18nTranslations[lang]) return;
