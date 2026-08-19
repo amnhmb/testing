@@ -2,7 +2,7 @@ import { defineConfig } from 'vite';
 import { resolve } from 'path';
 
 export default defineConfig({
-  base: process.env.CF_PAGES ? '/' : '/thirtyonelab.catalog/',
+  base: process.env.CF_PAGES ? '/' : '/testing/',
   root: 'src',
   envDir: '../',
   publicDir: '../public',
