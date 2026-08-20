@@ -759,7 +759,10 @@ function renderV3LightboxActiveIndex() {
     const innerPrev = document.getElementById('lightboxInnerPrev');
     const innerNext = document.getElementById('lightboxInnerNext');
 
-    if (lightboxImg) lightboxImg.src = activeImgSrc;
+    if (lightboxImg) {
+        lightboxImg.src = activeImgSrc;
+        if (window.resetLightboxZoom) window.resetLightboxZoom();
+    }
 
     // Single stack vs Split layout & Large Lightbox modifier (Printing & Size Chart)
     if (wrapper) {
@@ -1120,6 +1123,7 @@ document.getElementById('lightboxNext')?.addEventListener('click', (e) => {
 
 // Mobile Touch Swipe Listener
 let touchStartX = 0;
+let touchStartY = 0;
 let touchEndX = 0;
 
 const lightboxOverlayEl = document.getElementById('lightboxOverlay');
@@ -1128,7 +1132,22 @@ if (lightboxOverlayEl) {
 // Mobile Pinch-to-Zoom on Lightbox Image
 let currentZoom = 1;
 let initialDistance = null;
+let currentTranslateX = 0;
+let currentTranslateY = 0;
+let lastTranslateX = 0;
+let lastTranslateY = 0;
 const lightboxImgEl = document.getElementById('lightboxImg');
+
+window.resetLightboxZoom = function() {
+    if (lightboxImgEl) {
+        currentZoom = 1;
+        currentTranslateX = 0;
+        currentTranslateY = 0;
+        lastTranslateX = 0;
+        lastTranslateY = 0;
+        lightboxImgEl.style.transform = `translate(0px, 0px) scale(1)`;
+    }
+};
 
 if (lightboxOverlayEl && lightboxImgEl) {
     lightboxOverlayEl.addEventListener('touchstart', (e) => {
@@ -1139,6 +1158,7 @@ if (lightboxOverlayEl && lightboxImgEl) {
             );
         } else if (e.touches.length === 1) {
             touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
         }
     }, { passive: false });
 
@@ -1151,8 +1171,20 @@ if (lightboxOverlayEl && lightboxImgEl) {
             );
             const scale = currentDistance / initialDistance;
             currentZoom = Math.min(Math.max(1, currentZoom * scale), 4); // Max zoom 4x
-            lightboxImgEl.style.transform = `scale(${currentZoom})`;
+            lightboxImgEl.style.transform = `translate(${currentTranslateX}px, ${currentTranslateY}px) scale(${currentZoom})`;
             initialDistance = currentDistance;
+        } else if (e.touches.length === 1 && currentZoom > 1) {
+            e.preventDefault(); // Prevent scrolling when panning
+            const currentX = e.touches[0].clientX;
+            const currentY = e.touches[0].clientY;
+            const deltaX = currentX - touchStartX;
+            const deltaY = currentY - touchStartY;
+            
+            // Allow panning based on delta from start, added to last pan position
+            currentTranslateX = lastTranslateX + (deltaX / currentZoom);
+            currentTranslateY = lastTranslateY + (deltaY / currentZoom);
+            
+            lightboxImgEl.style.transform = `translate(${currentTranslateX}px, ${currentTranslateY}px) scale(${currentZoom})`;
         }
     }, { passive: false });
 
@@ -1160,6 +1192,11 @@ if (lightboxOverlayEl && lightboxImgEl) {
         if (e.touches.length < 2) {
             initialDistance = null;
         }
+        if (e.touches.length === 0 && currentZoom > 1) {
+            lastTranslateX = currentTranslateX;
+            lastTranslateY = currentTranslateY;
+        }
+
         if (e.changedTouches && e.changedTouches.length === 1 && !initialDistance) {
             // Handle swipe if not zoomed
             if (currentZoom <= 1.1) {
@@ -1187,8 +1224,7 @@ function closeLightbox() {
     const lightboxImg = document.getElementById('lightboxImg');
 
     // Reset Zoom
-    if (typeof currentZoom !== 'undefined') currentZoom = 1;
-    if (lightboxImg) lightboxImg.style.transform = 'scale(1)';
+    if (window.resetLightboxZoom) window.resetLightboxZoom();
 
     if (content) content.style.opacity = '0';
     if (navPrev) navPrev.style.opacity = '0';

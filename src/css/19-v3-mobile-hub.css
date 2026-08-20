@@ -48,6 +48,8 @@
 }
 
 /* Primary Action Buttons (Collection Design & Event Edition) */
+
+
 .v3-hub-socials {
     display: flex;
     justify-content: center;
@@ -247,7 +249,7 @@
     justify-content: center;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .v3-modal-overlay.active {
@@ -273,7 +275,7 @@
     overflow: hidden;
     box-shadow: 0 -15px 50px rgba(0, 0, 0, 0.2);
     transform: translateY(100%);
-    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .v3-modal-overlay.active .v3-modal-content {

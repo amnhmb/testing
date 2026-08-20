@@ -35,7 +35,7 @@ export const i18nTranslations = {
         step1_title: "Pick or Upload a Design",
         step1_desc: "Choose from our collection or send your own sketch or mockup.",
         step2_title: "Set Your Specs",
-        step2_desc: "Choose fabric, collar, print details — names, numbers, logos, sponsors. Everything.",
+        step2_desc: "Choose fabric, collar, print details - names, numbers, logos, sponsors. Everything.",
         step3_title: "WhatsApp Us & Order",
         step3_desc: "Use the quote builder to wrap up your order and send it straight to our team.",
 
@@ -73,13 +73,13 @@ export const i18nTranslations = {
         // About Section
         about_tag: "Since 2023",
         about_title: "The Art of Custom Apparel",
-        about_desc1: "ThirtyOne Lab is a custom jersey and apparel shop based in Kajang, Selangor. We pair high-quality sports fabrics with clean, minimal designs — built for teams, clubs, and brands.",
+        about_desc1: "ThirtyOne Lab is a custom jersey and apparel shop based in Kajang, Selangor. We pair high-quality sports fabrics with clean, minimal designs - built for teams, clubs, and brands.",
         about_desc2: "Every cut, stitch, and print is done with care. Because a jersey isn't just clothing. It's how your team shows up.",
 
         // Contact Section
         contact_tag: "Come Visit",
         contact_title: "Drop By Our Shop",
-        contact_intro: "Want to feel the fabrics, talk through a design, or sort out sizing? Come in — we're happy to help you figure out your order.",
+        contact_intro: "Want to feel the fabrics, talk through a design, or sort out sizing? Come in - we're happy to help you figure out your order.",
         contact_location_title: "Our Location",
         contact_email_title: "Email Us",
         contact_wa_title: "WhatsApp Support",
@@ -193,6 +193,7 @@ export const i18nTranslations = {
         v3_close_modal: "Close",
         v3_back_to_hub: "Back",
         v3_tap_to_close: "Tap anywhere to close",
+        v3_zoom_hint: "Pinch to zoom (2 fingers)",
 
         // Material specs
         spec_recommend_label: "Recommended",
@@ -288,13 +289,13 @@ export const i18nTranslations = {
         // About Section
         about_tag: "Sejak 2023",
         about_title: "Seni Pakaian Custom",
-        about_desc1: "ThirtyOne Lab ialah kedai jersi dan baju custom di Kajang, Selangor. Kami gabungkan kain sukan berkualiti dengan design minimalis — dibuat khas untuk pasukan, kelab, dan jenama.",
+        about_desc1: "ThirtyOne Lab ialah kedai jersi dan baju custom di Kajang, Selangor. Kami gabungkan kain sukan berkualiti dengan design minimalis - dibuat khas untuk pasukan, kelab, dan jenama.",
         about_desc2: "Setiap potongan, jahitan, dan cetakan kami buat dengan serius. Sebab baju bukan sekadar pakaian. Ia cara pasukan anda tampil.",
 
         // Contact Section
         contact_tag: "Jom Lawat",
         contact_title: "Singgah ke Kedai Kami",
-        contact_intro: "Nak rasa kain, bincang design, atau tanya pasal saiz? Datanglah — kami sedia bantu selesaikan tempahan anda.",
+        contact_intro: "Nak rasa kain, bincang design, atau tanya pasal saiz? Datanglah - kami sedia bantu selesaikan tempahan anda.",
         contact_location_title: "Lokasi Kedai",
         contact_email_title: "Emel Kami",
         contact_wa_title: "Sokongan WhatsApp",
@@ -412,6 +413,7 @@ export const i18nTranslations = {
         v3_close_modal: "Tutup",
         v3_back_to_hub: "Balik",
         v3_tap_to_close: "Tap mana-mana untuk tutup",
+        v3_zoom_hint: "Boleh zoom (Guna 2 jari)",
 
         // Material specs
         spec_recommend_label: "Rekomen",
