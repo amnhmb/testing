@@ -568,3 +568,14 @@
     object-fit: contain;
     filter: grayscale(100%) opacity(0.7);
 }
+
+/* Hide scrollbars globally on mobile devices for a cleaner look while keeping functionality */
+@media (max-width: 900px) {
+    *::-webkit-scrollbar {
+        display: none !important;
+    }
+    * {
+        -ms-overflow-style: none !important;
+        scrollbar-width: none !important;
+    }
+}

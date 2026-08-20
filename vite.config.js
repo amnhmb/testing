@@ -31,7 +31,7 @@ export default defineConfig({
       }
     })
   ],
-  base: '/',
+  base: process.env.CF_PAGES ? '/' : '/testing/',
   root: 'src',
   envDir: '../',
   publicDir: '../public',
